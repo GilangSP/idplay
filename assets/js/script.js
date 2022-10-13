@@ -3,7 +3,7 @@
 function base_url() {
 	let protocol = window.location.protocol + "//";
 	let host = protocol + window.location.host + "/";
-	host = host + "localhost/idplay";
+	host = host + "idplay";
 
 	return host;
 }
