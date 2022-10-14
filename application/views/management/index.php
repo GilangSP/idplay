@@ -34,7 +34,7 @@
 										', '
 										</div>'); ?>
 					<?= $this->session->flashdata('message_pelanggan'); ?>
-					<button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newPelangganModal"
+					<button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newModal"
 						onclick="addPelanggan()">Tambah Pelanggan</button>
 					<table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
 						<thead>
@@ -90,32 +90,31 @@
 <!-- container -->
 
 <!-- Modal -->
-<div class="modal fade" id="newMenuModal" tabindex="-1" role="dialog" aria-labelledby="MenuModalLabel"
+<div class="modal fade" id="newModal" tabindex="-1" role="dialog" aria-labelledby="PelangganModalLabel"
 	aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="MenuModalLabel">Tambah Data Pelanggan</h5>
+				<h5 class="modal-title" id="PelangganModalLabel">Tambah Data Pelanggan</h5>
 				<button onclick="javascript:void(0);" data-dismiss="modal" class="btn btn-close">
 				</button>
 			</div>
 			<form method="POST">
-				<input type="hidden" name="id" id="id">
+				<input type="hidden" name="cid" id="cid">
 				<div class="modal-body">
-					<div class="form-floating">
-						<input type="text" class="form-control" id="menu" name="menu" placeholder="Masukan nama menu"
-							autofocus />
-						<label for="menu">CID</label>
+					<div class="form-floating mb-2">
+						<input type="text" class="form-control" id="cid" name="cid" placeholder="Masukan CID" autofocus />
+						<label for="title">CID</label>
 					</div>
-					<div class="form-floating">
-						<input type="text" class="form-control" id="menu" name="menu" placeholder="Masukan nama menu" />
-						<label for="menu">Nama Pelanggan</label>
+					<div class="form-floating mb-2">
+						<input type="text" class="form-control" id="nama" name="nama" placeholder="Masukan Nama Pelanggan" />
+						<label for="nama">Nama Pelanggan</label>
 					</div>
-					<div class="form-floating">
-						<textarea type="text" class="form-control" id="menu" name="menu" placeholder="Masukan nama menu" cols="30"
-							rows="10"></textarea>
+					<div class="form-floating mb-2">
+						<textarea type="text" class="form-control" rows="3" id="alamat" name="alamat"
+							placeholder="Masukan nama menu"></textarea>
 						<!-- <input type="text" class="form-control" id="menu" name="menu" placeholder="Masukan nama menu" /> -->
-						<label for="menu">Alamat</label>
+						<label for="alamat">Alamat</label>
 					</div>
 				</div>
 				<div class="modal-footer">
