@@ -63,13 +63,13 @@
 										</a>
 										<div class="dropdown-menu dropdown-menu-end">
 											<!-- item-->
-											<button class="dropdown-item" data-toggle="modal"
-												data-target="#inputModal" data-id="<?= $p['cid']; ?>"
+											<button class="dropdown-item" data-toggle="modal" data-target="#inputModal"
+												data-id="<?= $p['cid']; ?>"
 												onclick="editPelanggan(`<?= $p['cid']; ?>`)"><i
 													class="mdi mdi-pencil me-1"></i> Edit </button>
 											<!-- item-->
-											<button class="dropdown-item" data-toggle="modal"
-												data-target="#deleteModal" data-id="<?= $p['cid']; ?>"
+											<button class="dropdown-item" data-toggle="modal" data-target="#deleteModal"
+												data-id="<?= $p['cid']; ?>"
 												onclick="deletePelanggan(`<?= $p['cid']; ?>`)"><i
 													class="mdi mdi-delete me-1"></i> Hapus </button>
 										</div>
@@ -103,11 +103,13 @@
 				<input type="hidden" name="id" id="id">
 				<div class="modal-body">
 					<div class="form-floating mb-2">
-						<input type="number" class="form-control" id="cid" name="cid" placeholder="Masukan CID" autofocus />
+						<input type="number" class="form-control" id="cid" name="cid" placeholder="Masukan CID"
+							autofocus />
 						<label for="title">CID</label>
 					</div>
 					<div class="form-floating mb-2">
-						<input type="text" class="form-control" id="nama" name="nama" placeholder="Masukan Nama Pelanggan" />
+						<input type="text" class="form-control" id="nama" name="nama"
+							placeholder="Masukan Nama Pelanggan" />
 						<label for="nama">Nama Pelanggan</label>
 					</div>
 					<div class="form-floating mb-2">

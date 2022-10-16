@@ -58,8 +58,19 @@ class Menu_model extends CI_Model
 
 	public function getAutoSearch($keyword)
 	{
-		$query = "SELECT * FROM pelanggan WHERE cid LIKE '%".$keyword."%' ORDER BY cid LIMIT 10
+		$query = "SELECT * FROM pelanggan WHERE cid LIKE '%" . $keyword . "%' ORDER BY cid LIMIT 10
 		";
 		return $this->db->query($query)->result_array();
+	}
+
+	// Data Sub Menu
+	public function editPelangganById($id, $data)
+	{
+		return $this->db->where('cid', $id)->update('pelanggan', $data);
+	}
+
+	public function deletePelangganById($id)
+	{
+		return $this->db->delete('pelanggan', ['cid' => $id]);
 	}
 }
