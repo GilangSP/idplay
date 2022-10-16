@@ -104,7 +104,6 @@ class Management extends CI_Controller
 
 		$this->form_validation->set_rules('id_p', 'Id Pelanggan', 'required');
 		$this->form_validation->set_rules('keluhan', 'Nama', 'required');
-		// $this->form_validation->set_rules('gambar', 'Alamat', 'required');
 
 		if ($this->form_validation->run() == false) {
 			$this->load->view('templates/header', $data);
@@ -122,16 +121,16 @@ class Management extends CI_Controller
 			$this->session->set_flashdata(
 				'message_pelanggan',
 				'<div class="alert alert-success" role="alert">
-					Tambah Pelanggan Berhasil!
+					Tambah Keluhan Berhasil!
 				</div>'
 			);
-			redirect('management');
+			redirect('management/keluhan');
 		}
 	}
 
 	public function getKeluhanModal()
 	{
-		$data = $this->db->get_where('pelanggan', ['cid' => $_POST['id']])->row_array();
+		$data = $this->db->get_where('keluhan', ['cid' => $_POST['id']])->row_array();
 		echo json_encode($data);
 	}
 
@@ -140,16 +139,16 @@ class Management extends CI_Controller
 		$data['title'] = 'Pelanggan';
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-		$data['pelanggan'] = $this->db->get('pelanggan')->result_array();
+		$data['keluhan'] = $this->db->get('keluhan')->result_array();
 
-		$this->form_validation->set_rules('nama', 'Nama', 'required');
-		$this->form_validation->set_rules('alamat', 'Alamat', 'required');
+$this->form_validation->set_rules('id_p', 'Id Pelanggan', 'required');
+$this->form_validation->set_rules('keluhan', 'Nama', 'required');
 
 		if ($this->form_validation->run() == false) {
 			$this->load->view('templates/header', $data);
 			$this->load->view('templates/sidebar', $data);
 			$this->load->view('templates/topbar', $data);
-			$this->load->view('management/index', $data);
+			$this->load->view('management/keluhan', $data);
 			$this->load->view('templates/footer');
 		} else {
 			$data = [
@@ -160,10 +159,10 @@ class Management extends CI_Controller
 			$this->session->set_flashdata(
 				'message_pelanggan',
 				'<div class="alert alert-success" role="alert">
-					Success Edit Pelanggan!
+					Success Edit Keluhan!
 				</div>'
 			);
-			redirect('management');
+			redirect('management/keluhan');
 		}
 	}
 
@@ -174,9 +173,9 @@ class Management extends CI_Controller
 		$this->session->set_flashdata(
 			'message_pelanggan',
 			'<div class="alert alert-success" role="alert">
-				Success Delete Pelanggan!
+				Success Delete Keluhan!
 			</div>'
 		);
-		redirect('management');
+		redirect('management/keluhan');
 	}
 }
