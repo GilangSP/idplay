@@ -39,8 +39,8 @@ class User extends CI_Controller
 			// cek image
 			$upload_image = $_FILES['image']['name'];
 			if ($upload_image) {
-				$config['allowed_types'] = 'gif|jpg|png';
-				$config['max_size']     = '2048';
+				$config['allowed_types'] = 'gif|jpg|png|jpeg|webp';
+				$config['max_size']     = '5048';
 				$config['upload_path'] = './assets/img/profile/';
 
 				$this->load->library('upload', $config);

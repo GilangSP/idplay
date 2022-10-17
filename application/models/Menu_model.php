@@ -73,4 +73,11 @@ class Menu_model extends CI_Model
 	{
 		return $this->db->delete('pelanggan', ['cid' => $id]);
 	}
+
+	public function KeluhanPelanggan(){
+		$this->db->select('*');
+		$this->db->from("keluhan k");
+		$this->db->join('pelanggan p','k.id_p=p.cid','left');
+		return $this->db->get();
+	}
 }

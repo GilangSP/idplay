@@ -100,7 +100,75 @@ class Management extends CI_Controller
 		$data['title'] = 'Keluhan';
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-		$data['keluhan'] = $this->db->get('keluhan')->result_array();
+		// $data['keluhan'] = $this->db->get('keluhan')->result_array();
+		$data['keluhan'] = $this->menu->KeluhanPelanggan()->result_array();
+
+		$this->form_validation->set_rules('id_p', 'Id Pelanggan', 'required');
+		$this->form_validation->set_rules('keluhan', 'Nama', 'required');
+
+		if ($this->form_validation->run() == false) {
+			$this->load->view('templates/header', $data);
+			$this->load->view('templates/sidebar', $data);
+			$this->load->view('templates/topbar', $data);
+			$this->load->view('management/keluhan', $data);
+			$this->load->view('templates/footer');
+		} else {
+			$upload_image = $_FILES['image']['name'];
+			if ($upload_image) {
+				$config['allowed_types'] = 'gif|jpg|png|jpeg|webp';
+				$config['max_size'] = '5048';
+				$config['upload_path'] = './assets/img/keluhan/';
+
+				$this->load->library('upload', $config);
+				if ($this->upload->do_upload('image')) {
+					$old_image = $data['user']['image'];
+					if ($old_image != 'default.png') {
+						unlink(FCPATH . 'assets/img/keluhan/' . $old_image);
+					}
+
+					$new_image = $this->upload->data('file_name');
+					$data = [
+						'id_p' => $this->input->post('id_p'),
+						'keluhan' => $this->input->post('keluhan'),
+						'gambar' => $new_image,
+						'validasi' => 1,
+					];
+					$this->db->insert('keluhan', $data);
+					$this->session->set_flashdata(
+					'message_keluhan',
+						'<div class="alert alert-success" role="alert">
+							Tambah Keluhan Pelanggan Berhasil!
+						</div>'
+					);
+					redirect('management/keluhan');
+				} else {
+					echo $this->upload->display_errors();
+				}
+			}else{
+				$this->session->set_flashdata(
+				'message_keluhan',
+					'<div class="alert alert-danger" role="alert">
+						Harus Upload Image!
+					</div>'
+				);
+				redirect('management/keluhan');
+			}
+		}
+	}
+
+	public function getKeluhanModal()
+	{
+		$data = $this->db->get_where('keluhan', ['id_keluhan' => $_POST['id']])->row_array();
+		echo json_encode($data);
+	}
+
+	public function editKeluhanModal()
+	{
+		$data['title'] = 'Keluhan';
+		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+		// $data['keluhan'] = $this->db->get('keluhan')->result_array();
+		$data['keluhan'] = $this->menu->KeluhanPelanggan();
 
 		$this->form_validation->set_rules('id_p', 'Id Pelanggan', 'required');
 		$this->form_validation->set_rules('keluhan', 'Nama', 'required');
@@ -113,53 +181,16 @@ class Management extends CI_Controller
 			$this->load->view('templates/footer');
 		} else {
 			$data = [
-				'cid' => $this->input->post('cid'),
-				'nama' => $this->input->post('nama'),
-				'alamat' => $this->input->post('alamat'),
-			];
-			$this->db->insert('pelanggan', $data);
-			$this->session->set_flashdata(
-				'message_pelanggan',
-				'<div class="alert alert-success" role="alert">
-					Tambah Keluhan Berhasil!
-				</div>'
-			);
-			redirect('management/keluhan');
-		}
-	}
-
-	public function getKeluhanModal()
-	{
-		$data = $this->db->get_where('keluhan', ['cid' => $_POST['id']])->row_array();
-		echo json_encode($data);
-	}
-
-	public function editKeluhanModal()
-	{
-		$data['title'] = 'Pelanggan';
-		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
-		$data['keluhan'] = $this->db->get('keluhan')->result_array();
-
-$this->form_validation->set_rules('id_p', 'Id Pelanggan', 'required');
-$this->form_validation->set_rules('keluhan', 'Nama', 'required');
-
-		if ($this->form_validation->run() == false) {
-			$this->load->view('templates/header', $data);
-			$this->load->view('templates/sidebar', $data);
-			$this->load->view('templates/topbar', $data);
-			$this->load->view('management/keluhan', $data);
-			$this->load->view('templates/footer');
-		} else {
-			$data = [
-				'nama' => $this->input->post('nama'),
-				'alamat' => $this->input->post('alamat'),
+				'id_p' => $this->input->post('id_p'),
+				'keluhan' => $this->input->post('keluhan'),
+				'gambar' => $this->input->post('gambar'),
+				'validasi' => 1,
 			];
 			$this->menu->editPelangganById($_POST['id'], $data);
 			$this->session->set_flashdata(
-				'message_pelanggan',
+				'message_keluhan',
 				'<div class="alert alert-success" role="alert">
-					Success Edit Keluhan!
+					Success Edit Keluhan Pelanggan!
 				</div>'
 			);
 			redirect('management/keluhan');
