@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 4.9.7
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Waktu pembuatan: 31 Agu 2022 pada 06.05
--- Versi server: 10.4.24-MariaDB
--- Versi PHP: 8.0.19
+-- Host: localhost:3306
+-- Waktu pembuatan: 19 Okt 2022 pada 09.31
+-- Versi server: 10.3.36-MariaDB-cll-lve
+-- Versi PHP: 7.4.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,8 +19,43 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `idplay`
+-- Database: `domainki_idplay`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `keluhan`
+--
+
+CREATE TABLE `keluhan` (
+  `id_keluhan` int(11) NOT NULL,
+  `id_p` char(100) NOT NULL,
+  `keluhan` varchar(250) NOT NULL,
+  `gambar` text NOT NULL,
+  `validasi` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `pelanggan`
+--
+
+CREATE TABLE `pelanggan` (
+  `cid` char(100) NOT NULL,
+  `nama` varchar(250) NOT NULL,
+  `alamat` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `pelanggan`
+--
+
+INSERT INTO `pelanggan` (`cid`, `nama`, `alamat`) VALUES
+('110022993', 'Habeb', 'kjsdk jbakjdb kajsbdkj bkjsab kjdbsakj dbksajbdkjabs'),
+('123456789', 'Gilang sp', 'asdjashd hsadhlas hldsha ljsahdj sahdjasldh lashdlah sldjhsaljd'),
+('443399221', 'Alfin', 'jsbadjba jsabkdj baskjbkjdbkjba sjkdbsakj bdkjsbd kjsabkdjbakjsdbkajsbk jdasbjkdb ajksb');
 
 -- --------------------------------------------------------
 
@@ -44,8 +80,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `username`, `email`, `image`, `password`, `role_id`, `is_active`, `date_created`) VALUES
-(1, 'Administrator', 'admin', 'itdindagkopkotapekalongan@gmail.com', 'default.png', '$2y$10$yunSzMoO5uFDVZpBtn5La.sMmCgZ8cxVn317tqxGEsKfnrN8B2Pfi', 1, 1, 1655427300),
-(13, 'Gilang Syah Putra', 'gilangsyahputra030', 'gilangsyahputra030@gmail.com', 'default.png', '$2y$10$icKqGM3UKb/cvufNJEscwO39v3ipdCm9TjgvvBB7/FFYZWOH.O0vG', 1, 1, 1655426835);
+(1, 'Administrator', 'admin', 'itdindagkopkotapekalongan@gmail.com', 'default.png', '$2y$10$yunSzMoO5uFDVZpBtn5La.sMmCgZ8cxVn317tqxGEsKfnrN8B2Pfi', 1, 1, 1655427300);
 
 -- --------------------------------------------------------
 
@@ -67,7 +102,6 @@ INSERT INTO `user_access_menu` (`id`, `role_id`, `menu_id`) VALUES
 (1, 1, 1),
 (3, 2, 2),
 (20, 1, 2),
-(30, 1, 3),
 (32, 1, 4),
 (36, 1, 5),
 (37, 1, 6),
@@ -75,7 +109,9 @@ INSERT INTO `user_access_menu` (`id`, `role_id`, `menu_id`) VALUES
 (47, 1, 11),
 (48, 2, 5),
 (49, 2, 4),
-(50, 2, 6);
+(50, 2, 6),
+(51, 1, 3),
+(52, 1, 12);
 
 -- --------------------------------------------------------
 
@@ -132,8 +168,7 @@ CREATE TABLE `user_role` (
 
 INSERT INTO `user_role` (`id`, `role`) VALUES
 (1, 'Administrator'),
-(2, 'Member'),
-(4, 'Customers');
+(2, 'Noc');
 
 -- --------------------------------------------------------
 
@@ -182,6 +217,18 @@ CREATE TABLE `user_token` (
 --
 
 --
+-- Indeks untuk tabel `keluhan`
+--
+ALTER TABLE `keluhan`
+  ADD PRIMARY KEY (`id_keluhan`);
+
+--
+-- Indeks untuk tabel `pelanggan`
+--
+ALTER TABLE `pelanggan`
+  ADD PRIMARY KEY (`cid`);
+
+--
 -- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
@@ -228,6 +275,12 @@ ALTER TABLE `user_token`
 --
 
 --
+-- AUTO_INCREMENT untuk tabel `keluhan`
+--
+ALTER TABLE `keluhan`
+  MODIFY `id_keluhan` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
@@ -237,7 +290,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `user_access_menu`
 --
 ALTER TABLE `user_access_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_google`
@@ -249,7 +302,7 @@ ALTER TABLE `user_google`
 -- AUTO_INCREMENT untuk tabel `user_menu`
 --
 ALTER TABLE `user_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_role`
