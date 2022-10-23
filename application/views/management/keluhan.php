@@ -93,45 +93,6 @@
 </div>
 <!-- container -->
 
-<!-- Modal -->
-<div class="modal fade" id="inputModal" tabindex="-1" role="dialog" aria-labelledby="InputModalLabel"
-	aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="InputModalLabel">Tambah Data Pelanggan</h5>
-				<button onclick="javascript:void(0);" data-dismiss="modal" class="btn btn-close">
-				</button>
-			</div>
-			<form method="POST">
-				<input type="hidden" name="id" id="id">
-				<div class="modal-body">
-					<div class="form-floating mb-2">
-						<input type="number" class="form-control" id="cid" name="cid" placeholder="Masukan CID"
-							autofocus />
-						<label for="title">CID</label>
-					</div>
-					<div class="form-floating mb-2">
-						<input type="text" class="form-control" id="nama" name="nama"
-							placeholder="Masukan Nama Pelanggan" />
-						<label for="nama">Nama Pelanggan</label>
-					</div>
-					<div class="form-floating mb-2">
-						<textarea type="text" class="form-control" rows="3" id="alamat" name="alamat"
-							placeholder="Masukan nama menu"></textarea>
-						<!-- <input type="text" class="form-control" id="menu" name="menu" placeholder="Masukan nama menu" /> -->
-						<label for="alamat">Alamat</label>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button type="submit" class="btn btn-primary">Add</button>
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
-
 <!-- Modal Tambah Keluhan -->
 <div class="modal fade" id="tambahKeluhanModal" tabindex="-1" role="dialog" aria-labelledby="UsahaModalLabel"
 	aria-hidden="true">
