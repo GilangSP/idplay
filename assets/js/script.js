@@ -411,6 +411,68 @@ function deletePelanggan(id) {
 	});
 }
 
+// #################################################################################################################
+// KELUHAN
+// ADD
+function addKeluhanPelanggan() {
+	$("#InputModalLabel").html("Tambah Keluhan Pelanggan");
+	$(".modal-footer button[type=submit]").html("Add");
+	$("#floatingCID").prop("disabled", false);
+	// $(".modal-content form").attr("action", base_url() + "/management");
+	$(".modal-content form")[0].reset();
+	$(".modal-content form").validate().resetForm();
+}
+
+// Edit
+function editKeluhanPelanggan(id) {
+	$("#InputModalLabel").html("Edit Pelanggan");
+	$(".modal-footer button[type=submit]").html("Edit");
+	$(".modal-content form").attr(
+		"action",
+		base_url() + "/management/editPelangganModal"
+	);
+	$("#floatingCID").prop("disabled", true);
+
+	const idedit = id;
+	$.ajax({
+		url: base_url() + "/management/getPelangganModal",
+		data: {
+			id: idedit,
+		},
+		method: "POST",
+		dataType: "json",
+		success: function (data) {
+			$("#cid").val(data.cid);
+			$("#nama").val(data.nama);
+			$("#alamat").val(data.alamat);
+			$("#id").val(data.cid);
+		},
+	});
+}
+
+// Delete
+function deleteKeluhanPelanggan(id) {
+	$(".modal-footer button[type=submit]").html("Delete");
+	$(".modal-content form").attr(
+		"action",
+		base_url() + "/management/deletePelangganModal"
+	);
+
+	const iddelete = id;
+	$.ajax({
+		url: base_url() + "/management/getPelangganModal",
+		data: {
+			id: iddelete,
+		},
+		method: "POST",
+		dataType: "json",
+		success: function (data) {
+			$("#id_s").val(data.cid);
+			// console.log(data);
+		},
+	});
+}
+
 
 
 

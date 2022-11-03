@@ -94,16 +94,16 @@
 <!-- container -->
 
 <!-- Modal Tambah Keluhan -->
-<div class="modal fade" id="tambahKeluhanModal" tabindex="-1" role="dialog" aria-labelledby="UsahaModalLabel"
+<div class="modal fade" id="inputModal" tabindex="-1" role="dialog" aria-labelledby="InputModalLabel"
 	aria-hidden="true">
 	<div class="modal-dialog modal-xl">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="UsahaModalLabel">Form Keluhan</h5>
+				<h5 class="modal-title" id="InputModalLabel">Form Keluhan</h5>
 				<button onclick="javascript:void(0);" data-dismiss="modal" class="btn btn-close"></button>
 			</div>
-			<?= form_open_multipart('peserta/uploadData'); ?>
-				<input type="hidden" name="id_tu" id="id_tu">
+			<?= form_open_multipart('management/keluhan'); ?>
+				<input type="hidden" name="id_tu" id="id_tu" value="1">
 				<div class="card-body">
 					<div id="progressbarwizard">
 
@@ -145,9 +145,9 @@
 									<div class="col-12">
 
 										<div class="form-floating mb-2">
+											<input type="text" class="form-control" name="cid" id="floatingCID" placeholder="Masukan CID" />
+											<input type="text" name="cid" id="cid">
 											<label for="form-control">Nomer CID</label>
-											<input type="text" class="form-control" name="cid" id="floatingCID"
-												placeholder="Masukan CID" />
 										</div>
 
 										<div class="datanePelanggan"></div>
@@ -162,8 +162,7 @@
 								<div class="row">
 									<div class="col-12">
 										<div class="form-floating mb-2">
-											<label for="form-control">Optional Keluhan</label>
-											<select class="form-control" id="floatingjp" name="jp"
+											<select class="form-select" id="jp" name="jp"
 												aria-label="Floating label select example">
 												<option selected>Pilih Keluhan</option>
 												<option value="taki">Tidak Ada Koneksi Internet</option>
@@ -185,6 +184,7 @@
 												</option>
 												<option value="o">Others</option>
 											</select>
+											<label for="floatingKeluhan">Optional Keluhan</label>
 										</div>
 
 										<div class="row mb-3">
@@ -202,11 +202,10 @@
 																	Image Preview
 																</span>
 															</div>
-															<input type="hidden" id="img_1" name="img_1">
+															<input type="hidden" id="img" name="img">
 															<div class="col-sm-12">
 																<div class="custom-file">
-																	<input type="file" id="image_1" name="image_1"
-																		class="form-control">
+																	<input type="file" id="image" name="image" class="form-control">
 																</div>
 															</div>
 														</div>
@@ -286,3 +285,32 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+	// input data 1
+	// ##############################################################################
+	const inpFile_1 = document.getElementById('image');
+	const previewContainer_1 = document.getElementById('imagePreview_1');
+	const previewImage_1 = previewContainer_1.querySelector('.input_data_1');
+	const previewDefaultText_1 = previewContainer_1.querySelector('.text_input_data_1');
+
+	inpFile_1.addEventListener("change", function () {
+		const file = this.files[0];
+
+		if (file) {
+			const reader = new FileReader();
+
+			previewDefaultText_1.style.display = "none";
+			previewImage_1.style.display = "block";
+
+			reader.addEventListener("load", function () {
+				previewImage_1.setAttribute("src", this.result);
+			});
+			reader.readAsDataURL(file);
+		} else {
+			previewDefaultText_1.style.display = null;
+			previewImage_1.style.display = null;
+			previewImage_1.setAttribute("src", "");
+		}
+	});
+</script>

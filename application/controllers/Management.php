@@ -103,8 +103,8 @@ class Management extends CI_Controller
 		// $data['keluhan'] = $this->db->get('keluhan')->result_array();
 		$data['keluhan'] = $this->menu->KeluhanPelanggan()->result_array();
 
-		$this->form_validation->set_rules('id_p', 'Id Pelanggan', 'required');
-		$this->form_validation->set_rules('keluhan', 'Nama', 'required');
+		$this->form_validation->set_rules('id_tu', 'Id Pelanggan', 'required');
+		// $this->form_validation->set_rules('floatingjp', 'Keluhan', 'required');
 
 		if ($this->form_validation->run() == false) {
 			$this->load->view('templates/header', $data);
@@ -121,15 +121,11 @@ class Management extends CI_Controller
 
 				$this->load->library('upload', $config);
 				if ($this->upload->do_upload('image')) {
-					$old_image = $data['user']['image'];
-					if ($old_image != 'default.png') {
-						unlink(FCPATH . 'assets/img/keluhan/' . $old_image);
-					}
 
 					$new_image = $this->upload->data('file_name');
 					$data = [
-						'id_p' => $this->input->post('id_p'),
-						'keluhan' => $this->input->post('keluhan'),
+						'id_p' => $this->input->post('floatingCID'),
+						'keluhan' => $this->input->post('jp'),
 						'gambar' => $new_image,
 						'validasi' => 1,
 					];
