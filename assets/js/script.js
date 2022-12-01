@@ -412,6 +412,17 @@ function deletePelanggan(id) {
 }
 
 // #################################################################################################################
+// KELUHAN FRONTEND
+// ADD
+function addKeluhanPelangganF() {
+	$("#InputModalLabel").html("Form Keluhan");
+	// $(".modal-footer button[type=submit]").html("Add");
+	// $(".modal-content form").attr("action", base_url() + "/management");
+	$(".modal-content form")[0].reset();
+	$(".modal-content form").validate().resetForm();
+}
+
+// #################################################################################################################
 // KELUHAN
 // ADD
 function addKeluhanPelanggan() {

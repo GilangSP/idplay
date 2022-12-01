@@ -12,9 +12,51 @@ class Pelayanan extends CI_Controller
 	public function index()
 	{
 		$data['title'] = 'Home';
-		$this->load->view('templates/frondendHeader', $data);
-		$this->load->view('pelayanan/index', $data);
-		$this->load->view('templates/frondendFooter');
+
+		$this->form_validation->set_rules('cid', 'CID', 'required');
+		// $this->form_validation->set_rules('floatingjp', 'Keluhan', 'required');
+
+		if ($this->form_validation->run() == false) {
+			$this->load->view('templates/frondendHeader', $data);
+			$this->load->view('pelayanan/index', $data);
+			$this->load->view('templates/frondendFooter');
+		} else {
+			$upload_image = $_FILES['image']['name'];
+			if ($upload_image) {
+				$config['allowed_types'] = 'gif|jpg|png|jpeg|webp|heic|heif';
+				$config['max_size'] = '5048';
+				$config['upload_path'] = './assets/img/keluhan/';
+
+				$this->load->library('upload', $config);
+				if ($this->upload->do_upload('image_1')) {
+					$new_image = $this->upload->data('file_name');
+					$data = [
+						'id_p' => $this->input->post('cid'),
+						'keluhan' => $this->input->post('jp'),
+						'gambar' => $new_image,
+						'validasi' => 1,
+					];
+					$this->db->insert('keluhan', $data);
+					$this->session->set_flashdata(
+						'message_keluhan',
+						'<div class="alert alert-success" role="alert">
+							Tambah Keluhan Pelanggan Berhasil!
+						</div>'
+					);
+					// redirect('pelayanan');
+				} else {
+					echo $this->upload->display_errors();
+				}
+			}else{
+				$this->session->set_flashdata(
+					'message_keluhan',
+					'<div class="alert alert-danger" role="alert">
+						Harus Upload Image!
+					</div>'
+				);
+				// redirect('pelayanan');
+			}
+		}
 	}
 
 	public function getDPelangan()

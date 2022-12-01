@@ -164,6 +164,7 @@
     			dataType: "JSON",
     			onSelect: function (suggestion) {
     				$("#floatingCID").val(suggestion.nama);
+					$("#cid").val(suggestion.nama);
     				$(".datanePelanggan").html(
     					`<div class="form-floating mb-2">
 							<label for="form-control">Nama Lengkap</label>
@@ -200,7 +201,6 @@
     		}, 1000);
 
     	})
-		// masuk
 
     </script>
 

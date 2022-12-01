@@ -64,7 +64,7 @@
     						kami proses</p>
     					<div class="form-group">
     						<button class="btn btn-primary py-3 px-4" data-toggle="modal"
-    							data-target="#tambahKeluhanModal" data-id="" onclick=""><i
+    							data-target="#tambahKeluhanModal" data-id="" onclick="addKeluhanPelangganF()"><i
     								class="mdi mdi-layers"></i> Isi Form Keluhan </button>
     						<!-- <input type="submit" value="Join now" class="btn btn-primary py-3 px-4"> -->
     					</div>
@@ -75,16 +75,15 @@
     </div>
 
     <!-- Modal Tambah Keluhan -->
-    <div class="modal fade" id="tambahKeluhanModal" tabindex="-1" role="dialog" aria-labelledby="UsahaModalLabel"
+    <div class="modal fade" id="tambahKeluhanModal" tabindex="-1" role="dialog" aria-labelledby="InputModalLabel"
     	aria-hidden="true">
     	<div class="modal-dialog modal-lg">
     		<div class="modal-content">
     			<div class="modal-header">
-    				<h5 class="modal-title" id="UsahaModalLabel">Form Keluhan</h5>
-    				<button onclick="javascript:void(0);" data-dismiss="modal" class="btn btn-close"></button>
+    				<h5 class="modal-title" id="InputModalLabel">Form Keluhan</h5>
+    				<button onclick="javascript:void(0);" data-d ismiss="modal" class="btn btn-close"></button>
     			</div>
-    			<form method="post">
-    				<input type="hidden" name="id_tu" id="id_tu">
+    			<?= form_open_multipart('pelayanan'); ?>
     				<div class="card-body">
     					<div id="progressbarwizard">
 
@@ -129,6 +128,7 @@
     											<label for="form-control">Nomer CID</label>
     											<input type="text" class="form-control" name="cid" id="floatingCID"
     												placeholder="Masukan CID" />
+											<input type="text" name="cid" id="cid">
     										</div>
 
     										<div class="datanePelanggan"></div>

@@ -39,7 +39,7 @@ class User extends CI_Controller
 			// cek image
 			$upload_image = $_FILES['image']['name'];
 			if ($upload_image) {
-				$config['allowed_types'] = 'gif|jpg|png|jpeg|webp';
+				$config['allowed_types'] = 'gif|jpg|png|jpeg|webp|heic|heif';
 				$config['max_size']     = '5048';
 				$config['upload_path'] = './assets/img/profile/';
 
