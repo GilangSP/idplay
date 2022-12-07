@@ -154,6 +154,10 @@
     <script src="<?= base_url(); ?>assets/js/pages/demo.datatable-init.js"></script>
     <!-- end demo js-->
 
+	<!-- sweetalert -->
+	<script src="<?= base_url(); ?>assets/vendor/sweetalert2/dist/sweetalert2.all.min.js"></script>
+	<script src="<?= base_url(); ?>assets/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
+
     <script src="<?= base_url(); ?>assets/js/script.js"></script>
 
     <script src="<?= base_url(); ?>assets/frontend/js/jquery.autocomplete.min.js"></script>
@@ -181,6 +185,7 @@
     		setInterval(function () {
     			if ($("#floatingCID").val() == "") {
     				$(".datanePelanggan").html(null);
+					$("#cid").val(null);
     			} else {
     				var datane = $("#floatingCID").val();
     				$.ajax({

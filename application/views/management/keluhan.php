@@ -56,9 +56,68 @@
 								<td scope="row"><?= $i; ?></td>
 								<td><?= $k['cid']; ?></td>
 								<td><?= $k['nama']; ?></td>
-								<td><?= $k['keluhan']; ?></td>
-								<td><?= $k['gambar']; ?></td>
-								<td><?= $k['validasi']; ?></td>
+								<td>
+									<?php if($k['keluhan'] == "taki"): ?>
+										Tidak Ada Koneksi Internet
+									<?php elseif($k['keluhan'] == "takilmm"): ?>
+										Tidak Ada Koneksi Internet Lampu Modem Merah
+									<?php elseif($k['keluhan'] == "il"): ?>
+										Internet Lambat
+									<?php elseif($k['keluhan'] == "its"): ?>
+										Internet Tidak Stabil
+									<?php elseif($k['keluhan'] == "tbbwt"): ?>
+										Tidak Bisa Buka Web Tertentu
+									<?php elseif($k['keluhan'] == "wl"): ?>
+										Wifi Lambat
+									<?php elseif($k['keluhan'] == "wts"): ?>
+										Wifi Tidak Stabil
+									<?php elseif($k['keluhan'] == "wta"): ?>
+										Wifi Tidak Ada
+									<?php elseif($k['keluhan'] == "wtbnkk"): ?>
+										Wifi Tidak Bisa Nyambung Ke Komputer
+									<?php elseif($k['keluhan'] == "wtbnkh"): ?>
+										Wifi Tidak Bisa Nyambung Ke HP
+									<?php elseif($k['keluhan'] == "wtbnpl"): ?>
+										Wifi Tidak Bisa Nyambung Perangkat Lain
+									<?php elseif($k['keluhan'] == "stta"): ?>
+										Siaran TV Tidak Ada
+									<?php elseif($k['keluhan'] == "sttsm"): ?>
+										Siaran TV Tidak Stabil Muter
+									<?php elseif($k['keluhan'] == "sttbkct"): ?>
+										Siaran TV Tidak Bisa Ke Channel Tertentu
+									<?php elseif($k['keluhan'] == "o"): ?>
+										Others
+									<?php else: ?>
+										Tidak Ada
+									<?php endif; ?>
+								</td>
+								<td>
+									<img style="height: 80px; width: 80px;" src="<?= base_url('assets/img/keluhan/') . $k['gambar']; ?>" alt="" class="img-thumbnail">
+								</td>
+								<td>
+									<?php if($k['validasi'] == 1): ?>
+										<span class="badge badge-secondary btn-icon-split">
+											<span class="icon text-white-50">
+												<i class="fas fa-arrow-right"></i>
+											</span>
+											<span class="text">Belum Dikerjakan</span>
+										</span>
+									<?php elseif($k['validasi'] == 2): ?>
+										<span class="badge badge-success btn-icon-split">
+											<span class="icon text-white-50">
+												<i class="fas fa-check"></i>
+											</span>
+											<span class="text">Sudah Dikerjakan</span>
+										</span>
+									<?php else: ?>
+										<span class="badge badge-danger btn-icon-split">
+											<span class="icon text-white-50">
+												<i class="fas fa-times"></i>
+											</span>
+											<span class="text">Komplain Ditolak</span>
+										</span>
+									<?php endif; ?>
+								</td>
 								<td>
 									<div class="dropdown float-end">
 										<a href="#" class="dropdown-toggle text-muted arrow-none"

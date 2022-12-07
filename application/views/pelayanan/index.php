@@ -31,12 +31,10 @@
 
     </style>
 
-    <div class="hero-wrap" style="background-image: url('<?= base_url(); ?>assets/frontend/images/bg_1.jpg');"
-    	data-stellar-background-ratio="0.5">
-    	<div class="overlay"></div>
-    	<div class="container">
-    		<div class="row no-gutters slider-text align-items-center justify-content-start"
-    			data-scrollax-parent="true">
+<div class="hero-wrap" style="background-image: url('<?= base_url(); ?>assets/frontend/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+	<div class="overlay"></div>
+	<div class="container">
+		<div class="row no-gutters slider-text align-items-center justify-content-start" data-scrollax-parent="true">
     			<div class="col-lg-6 col-md-6 ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
     				<h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"> PT. Trans
     					Indonesia
@@ -81,9 +79,9 @@
     		<div class="modal-content">
     			<div class="modal-header">
     				<h5 class="modal-title" id="InputModalLabel">Form Keluhan</h5>
-    				<button onclick="javascript:void(0);" data-d ismiss="modal" class="btn btn-close"></button>
+    				<button onclick="javascript:void(0);" data-dismiss="modal" class="btn btn-close"></button>
     			</div>
-    			<?= form_open_multipart('pelayanan'); ?>
+    			<form class="form-horizontal" id="submit">
     				<div class="card-body">
     					<div id="progressbarwizard">
 
@@ -128,7 +126,7 @@
     											<label for="form-control">Nomer CID</label>
     											<input type="text" class="form-control" name="cid" id="floatingCID"
     												placeholder="Masukan CID" />
-											<input type="text" name="cid" id="cid">
+											<input type="hidden" name="cid" id="cid">
     										</div>
 
     										<div class="datanePelanggan"></div>
@@ -144,9 +142,8 @@
     									<div class="col-12">
     										<div class="form-floating mb-2">
     											<label for="form-control">Optional Keluhan</label>
-    											<select class="form-control" id="floatingjp" name="jp"
-    												aria-label="Floating label select example">
-    												<option selected>Pilih Keluhan</option>
+    											<select class="form-control" id="floatingjp" name="jp" aria-label="Floating label select example">
+    												<option value="" selected>Pilih Keluhan</option>
     												<option value="taki">Tidak Ada Koneksi Internet</option>
     												<option value="takilmm">Tidak Ada Koneksi Internet Lampu Modem Merah
     												</option>
@@ -840,6 +837,7 @@
 
     </section>
 
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script type="text/javascript">
     	// input data 1
     	// ##############################################################################
@@ -867,5 +865,52 @@
     			previewImage_1.setAttribute("src", "");
     		}
     	});
+		
+		// function btne(){
+			$('#submit').submit(function(e){
+			e.preventDefault();
+			var cidne = document.getElementById("cid").value;
+			var floatingjpne = document.getElementById("floatingjp").value;
+			var inpFilene = document.getElementById('image_1').value;
+			if(cidne == "" || floatingjpne == ""){
+				Swal.fire({
+				icon: 'error',
+				title: 'Oops...',
+				text: 'Harus Di isi semua!',
+				});
+			}else if(inpFilene == ""){
+				Swal.fire({
+				icon: 'error',
+				title: 'Oops...',
+				text: 'Image Harus diupload!',
+				});
+			}else{
+				$.ajax({
+					url:'<?php echo base_url();?>pelayanan/doUpload',
+					type:"post",
+					data:new FormData(this),
+					processData:false,
+					contentType:false,
+					cache:false,
+					async:false,
+					success: function(data){
+						Swal.fire({
+						icon: 'success',
+						title: 'Berhasil',
+						text: 'Anda Berhasil Menyimpan!',
+						});
+						// alert(cidne + ' ' + floatingjpne + ' ' + inpFile_1);
+						$("#cid").val(null);
+						$("#floatingCID").val(null);
+						$("#floatingjp").val("");
+						inpFilene.val(null);
+						previewDefaultText_1.style.display = null;
+						previewImage_1.style.display = null;
+						previewImage_1.setAttribute("src", "");
+					}
+				});
+			}
+		});
+		// }
 
     </script>
