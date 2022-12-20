@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 12 Des 2022 pada 10.30
+-- Waktu pembuatan: 20 Des 2022 pada 04.38
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 8.0.19
 
@@ -24,6 +24,40 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `berita`
+--
+
+CREATE TABLE `berita` (
+  `id` int(11) NOT NULL,
+  `judul` varchar(250) NOT NULL,
+  `subject` varchar(250) NOT NULL,
+  `isi` text NOT NULL,
+  `image` varchar(200) NOT NULL,
+  `tanggal` date NOT NULL,
+  `id_role` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `berita`
+--
+
+INSERT INTO `berita` (`id`, `judul`, `subject`, `isi`, `image`, `tanggal`, `id_role`) VALUES
+(2, 'Pahami Koneksi Internet', 'Mari Pahami Koneksi Internet', '<div>Disaat semua harga pada naik dari BBM, Bahan kebutuhan pokok. Idplay mulai menurunkan harga di Bulan Oktober 2022 ini..</div><div>Up to 10 Mbps Rp&nbsp; 199.000&nbsp; menjadi&nbsp; Rp 179.000</div><div>Up to 20 Mbps Rp&nbsp; 269.000 &nbsp; menjadi&nbsp; Rp. 249.000</div><div>Up to 50 Mbps&nbsp; Rp 329.000&nbsp; menjadi&nbsp; Rp 299.000</div><div>segera dapatkan promo di bulan oktober ini ya, harga tetap selama masih berlangganan.&nbsp; segera hub <a href=\"https://wa.me/6281119505828?fbclid=IwAR0dhbGRyiGCmW0qo-EcIAXorTOzDkb2UhsPOJAWY2AQlHG8IDJo0_EAT-g\">https://wa.me/6281119505828</a></div>', '309052261_455565749884686_6148338649028536238_n.jpg', '2022-12-15', 1),
+(3, 'Pahami Koneksi Internet', 'Mari Pahami Koneksi Internet', '<div>Disaat semua harga pada naik dari BBM, Bahan kebutuhan pokok. Idplay mulai menurunkan harga di Bulan Oktober 2022 ini..</div><div>Up to 10 Mbps Rp&nbsp; 199.000&nbsp; menjadi&nbsp; Rp 179.000</div><div>Up to 20 Mbps Rp&nbsp; 269.000 &nbsp; menjadi&nbsp; Rp. 249.000</div><div>Up to 50 Mbps&nbsp; Rp 329.000&nbsp; menjadi&nbsp; Rp 299.000</div><div>segera dapatkan promo di bulan oktober ini ya, harga tetap selama masih berlangganan.&nbsp; segera hub <a href=\"https://wa.me/6281119505828?fbclid=IwAR0dhbGRyiGCmW0qo-EcIAXorTOzDkb2UhsPOJAWY2AQlHG8IDJo0_EAT-g\">https://wa.me/6281119505828</a></div>', '309052261_455565749884686_6148338649028536238_n.jpg', '2022-12-15', 1),
+(4, 'Pahami Koneksi Internet', 'Mari Pahami Koneksi Internet', '<div>Disaat semua harga pada naik dari BBM, Bahan kebutuhan pokok. Idplay mulai menurunkan harga di Bulan Oktober 2022 ini..</div><div>Up to 10 Mbps Rp&nbsp; 199.000&nbsp; menjadi&nbsp; Rp 179.000</div><div>Up to 20 Mbps Rp&nbsp; 269.000 &nbsp; menjadi&nbsp; Rp. 249.000</div><div>Up to 50 Mbps&nbsp; Rp 329.000&nbsp; menjadi&nbsp; Rp 299.000</div><div>segera dapatkan promo di bulan oktober ini ya, harga tetap selama masih berlangganan.&nbsp; segera hub <a href=\"https://wa.me/6281119505828?fbclid=IwAR0dhbGRyiGCmW0qo-EcIAXorTOzDkb2UhsPOJAWY2AQlHG8IDJo0_EAT-g\">https://wa.me/6281119505828</a></div>', '309052261_455565749884686_6148338649028536238_n.jpg', '2022-12-15', 1),
+(5, 'Pahami Koneksi Internet', 'Mari Pahami Koneksi Internet', '<div>Disaat semua harga pada naik dari BBM, Bahan kebutuhan pokok. Idplay mulai menurunkan harga di Bulan Oktober 2022 ini..</div><div>Up to 10 Mbps Rp&nbsp; 199.000&nbsp; menjadi&nbsp; Rp 179.000</div><div>Up to 20 Mbps Rp&nbsp; 269.000 &nbsp; menjadi&nbsp; Rp. 249.000</div><div>Up to 50 Mbps&nbsp; Rp 329.000&nbsp; menjadi&nbsp; Rp 299.000</div><div>segera dapatkan promo di bulan oktober ini ya, harga tetap selama masih berlangganan.&nbsp; segera hub <a href=\"https://wa.me/6281119505828?fbclid=IwAR0dhbGRyiGCmW0qo-EcIAXorTOzDkb2UhsPOJAWY2AQlHG8IDJo0_EAT-g\">https://wa.me/6281119505828</a></div>', '309052261_455565749884686_6148338649028536238_n.jpg', '2022-12-15', 1),
+(6, 'Pahami Koneksi Internet', 'Mari Pahami Koneksi Internet', '<div>Disaat semua harga pada naik dari BBM, Bahan kebutuhan pokok. Idplay mulai menurunkan harga di Bulan Oktober 2022 ini..</div><div>Up to 10 Mbps Rp&nbsp; 199.000&nbsp; menjadi&nbsp; Rp 179.000</div><div>Up to 20 Mbps Rp&nbsp; 269.000 &nbsp; menjadi&nbsp; Rp. 249.000</div><div>Up to 50 Mbps&nbsp; Rp 329.000&nbsp; menjadi&nbsp; Rp 299.000</div><div>segera dapatkan promo di bulan oktober ini ya, harga tetap selama masih berlangganan.&nbsp; segera hub <a href=\"https://wa.me/6281119505828?fbclid=IwAR0dhbGRyiGCmW0qo-EcIAXorTOzDkb2UhsPOJAWY2AQlHG8IDJo0_EAT-g\">https://wa.me/6281119505828</a></div>', '309052261_455565749884686_6148338649028536238_n.jpg', '2022-12-15', 1),
+(7, 'Pahami Koneksi Internet', 'Mari Pahami Koneksi Internet', '<div>Disaat semua harga pada naik dari BBM, Bahan kebutuhan pokok. Idplay mulai menurunkan harga di Bulan Oktober 2022 ini..</div><div>Up to 10 Mbps Rp&nbsp; 199.000&nbsp; menjadi&nbsp; Rp 179.000</div><div>Up to 20 Mbps Rp&nbsp; 269.000 &nbsp; menjadi&nbsp; Rp. 249.000</div><div>Up to 50 Mbps&nbsp; Rp 329.000&nbsp; menjadi&nbsp; Rp 299.000</div><div>segera dapatkan promo di bulan oktober ini ya, harga tetap selama masih berlangganan.&nbsp; segera hub <a href=\"https://wa.me/6281119505828?fbclid=IwAR0dhbGRyiGCmW0qo-EcIAXorTOzDkb2UhsPOJAWY2AQlHG8IDJo0_EAT-g\">https://wa.me/6281119505828</a></div>', '309052261_455565749884686_6148338649028536238_n.jpg', '2022-12-15', 1),
+(8, 'Pahami Koneksi Internet', 'Mari Pahami Koneksi Internet', '<div>Disaat semua harga pada naik dari BBM, Bahan kebutuhan pokok. Idplay mulai menurunkan harga di Bulan Oktober 2022 ini..</div><div>Up to 10 Mbps Rp&nbsp; 199.000&nbsp; menjadi&nbsp; Rp 179.000</div><div>Up to 20 Mbps Rp&nbsp; 269.000 &nbsp; menjadi&nbsp; Rp. 249.000</div><div>Up to 50 Mbps&nbsp; Rp 329.000&nbsp; menjadi&nbsp; Rp 299.000</div><div>segera dapatkan promo di bulan oktober ini ya, harga tetap selama masih berlangganan.&nbsp; segera hub <a href=\"https://wa.me/6281119505828?fbclid=IwAR0dhbGRyiGCmW0qo-EcIAXorTOzDkb2UhsPOJAWY2AQlHG8IDJo0_EAT-g\">https://wa.me/6281119505828</a></div>', '309052261_455565749884686_6148338649028536238_n.jpg', '2022-12-15', 1),
+(9, 'Pahami Koneksi Internet', 'Mari Pahami Koneksi Internet', '<div>Disaat semua harga pada naik dari BBM, Bahan kebutuhan pokok. Idplay mulai menurunkan harga di Bulan Oktober 2022 ini..</div><div>Up to 10 Mbps Rp&nbsp; 199.000&nbsp; menjadi&nbsp; Rp 179.000</div><div>Up to 20 Mbps Rp&nbsp; 269.000 &nbsp; menjadi&nbsp; Rp. 249.000</div><div>Up to 50 Mbps&nbsp; Rp 329.000&nbsp; menjadi&nbsp; Rp 299.000</div><div>segera dapatkan promo di bulan oktober ini ya, harga tetap selama masih berlangganan.&nbsp; segera hub <a href=\"https://wa.me/6281119505828?fbclid=IwAR0dhbGRyiGCmW0qo-EcIAXorTOzDkb2UhsPOJAWY2AQlHG8IDJo0_EAT-g\">https://wa.me/6281119505828</a></div>', '309052261_455565749884686_6148338649028536238_n.jpg', '2022-12-15', 1),
+(10, 'Pahami Koneksi Internet', 'Mari Pahami Koneksi Internet', '<div>Disaat semua harga pada naik dari BBM, Bahan kebutuhan pokok. Idplay mulai menurunkan harga di Bulan Oktober 2022 ini..</div><div>Up to 10 Mbps Rp&nbsp; 199.000&nbsp; menjadi&nbsp; Rp 179.000</div><div>Up to 20 Mbps Rp&nbsp; 269.000 &nbsp; menjadi&nbsp; Rp. 249.000</div><div>Up to 50 Mbps&nbsp; Rp 329.000&nbsp; menjadi&nbsp; Rp 299.000</div><div>segera dapatkan promo di bulan oktober ini ya, harga tetap selama masih berlangganan.&nbsp; segera hub <a href=\"https://wa.me/6281119505828?fbclid=IwAR0dhbGRyiGCmW0qo-EcIAXorTOzDkb2UhsPOJAWY2AQlHG8IDJo0_EAT-g\">https://wa.me/6281119505828</a></div>', '309052261_455565749884686_6148338649028536238_n.jpg', '2022-12-15', 1),
+(11, 'Pahami Koneksi Internet', 'Mari Pahami Koneksi Internet', '<div>Disaat semua harga pada naik dari BBM, Bahan kebutuhan pokok. Idplay mulai menurunkan harga di Bulan Oktober 2022 ini..</div><div>Up to 10 Mbps Rp&nbsp; 199.000&nbsp; menjadi&nbsp; Rp 179.000</div><div>Up to 20 Mbps Rp&nbsp; 269.000 &nbsp; menjadi&nbsp; Rp. 249.000</div><div>Up to 50 Mbps&nbsp; Rp 329.000&nbsp; menjadi&nbsp; Rp 299.000</div><div>segera dapatkan promo di bulan oktober ini ya, harga tetap selama masih berlangganan.&nbsp; segera hub <a href=\"https://wa.me/6281119505828?fbclid=IwAR0dhbGRyiGCmW0qo-EcIAXorTOzDkb2UhsPOJAWY2AQlHG8IDJo0_EAT-g\">https://wa.me/6281119505828</a></div>', '309052261_455565749884686_6148338649028536238_n.jpg', '2022-12-15', 1),
+(12, 'Pahami Koneksi Internet', 'Mari Pahami Koneksi Internet', '<div>Disaat semua harga pada naik dari BBM, Bahan kebutuhan pokok. Idplay mulai menurunkan harga di Bulan Oktober 2022 ini..</div><div>Up to 10 Mbps Rp&nbsp; 199.000&nbsp; menjadi&nbsp; Rp 179.000</div><div>Up to 20 Mbps Rp&nbsp; 269.000 &nbsp; menjadi&nbsp; Rp. 249.000</div><div>Up to 50 Mbps&nbsp; Rp 329.000&nbsp; menjadi&nbsp; Rp 299.000</div><div>segera dapatkan promo di bulan oktober ini ya, harga tetap selama masih berlangganan.&nbsp; segera hub <a href=\"https://wa.me/6281119505828?fbclid=IwAR0dhbGRyiGCmW0qo-EcIAXorTOzDkb2UhsPOJAWY2AQlHG8IDJo0_EAT-g\">https://wa.me/6281119505828</a></div>', '309052261_455565749884686_6148338649028536238_n.jpg', '2022-12-15', 1),
+(13, 'Pahami Koneksi Internet', 'Mari Pahami Koneksi Internet', '<div>Disaat semua harga pada naik dari BBM, Bahan kebutuhan pokok. Idplay mulai menurunkan harga di Bulan Oktober 2022 ini..</div><div>Up to 10 Mbps Rp&nbsp; 199.000&nbsp; menjadi&nbsp; Rp 179.000</div><div>Up to 20 Mbps Rp&nbsp; 269.000 &nbsp; menjadi&nbsp; Rp. 249.000</div><div>Up to 50 Mbps&nbsp; Rp 329.000&nbsp; menjadi&nbsp; Rp 299.000</div><div>segera dapatkan promo di bulan oktober ini ya, harga tetap selama masih berlangganan.&nbsp; segera hub <a href=\"https://wa.me/6281119505828?fbclid=IwAR0dhbGRyiGCmW0qo-EcIAXorTOzDkb2UhsPOJAWY2AQlHG8IDJo0_EAT-g\">https://wa.me/6281119505828</a></div>', '309052261_455565749884686_6148338649028536238_n.jpg', '2022-12-15', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `keluhan`
 --
 
@@ -34,13 +68,6 @@ CREATE TABLE `keluhan` (
   `gambar` text NOT NULL,
   `validasi` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `keluhan`
---
-
-INSERT INTO `keluhan` (`id_keluhan`, `id_p`, `keluhan`, `gambar`, `validasi`) VALUES
-(1, '110022993', 'its', 'Screenshot_2022-04-13_232513.png', 1);
 
 -- --------------------------------------------------------
 
@@ -87,7 +114,11 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `name`, `username`, `email`, `image`, `password`, `role_id`, `is_active`, `date_created`) VALUES
 (1, 'Administrator', 'admin', 'idplay@gmail.com', 'default.png', '$2y$10$yunSzMoO5uFDVZpBtn5La.sMmCgZ8cxVn317tqxGEsKfnrN8B2Pfi', 1, 1, 1655427300),
-(17, 'nonik', 'nonik', 'nonik@gmail.com', 'default.png', '$2y$10$IRHAYk/m/jKmXfctK279L.TwBEkiehsvwXaFUI7gC16VA05z8tyh6', 2, 1, 1670571587);
+(17, 'Habib', 'habib', 'habib@gmail.com', 'WhatsApp_Image_2022-04-13_at_11_30_52_PM.jpeg', '$2y$10$IRHAYk/m/jKmXfctK279L.TwBEkiehsvwXaFUI7gC16VA05z8tyh6', 2, 1, 1670571587),
+(18, 'Alfin Arbain', 'alfin', 'alfin@gmail.com', 'default.png', '$2y$10$IRHAYk/m/jKmXfctK279L.TwBEkiehsvwXaFUI7gC16VA05z8tyh6', 3, 1, 1670571587),
+(19, 'Hasbi', 'hasbi', 'hasbi@gmail.com', 'default.png', '$2y$10$IRHAYk/m/jKmXfctK279L.TwBEkiehsvwXaFUI7gC16VA05z8tyh6', 4, 1, 1670571587),
+(20, 'Handika Erwin', 'handika', 'handika@gmail.com', 'default.png', '$2y$10$M5IdHzyPFtU4mwdDlESguOLghZq5K70DjVj75FB1CizsTyWa7SwH2', 2, 1, 1670912685),
+(21, 'Helmi', 'helmi', 'helmi@gmail.com', 'default.png', '$2y$10$wxfTtNgSj.brgL2Zqa0ZUuSvQhSx2Ee5Zuc8vEtT.KnFVBRNW1Y2C', 2, 1, 1670990265);
 
 -- --------------------------------------------------------
 
@@ -111,7 +142,9 @@ INSERT INTO `user_access_menu` (`id`, `role_id`, `menu_id`) VALUES
 (3, 1, 3),
 (4, 1, 8),
 (6, 2, 2),
-(7, 1, 4);
+(7, 1, 4),
+(8, 3, 2),
+(9, 4, 2);
 
 -- --------------------------------------------------------
 
@@ -169,7 +202,9 @@ CREATE TABLE `user_role` (
 
 INSERT INTO `user_role` (`id`, `role`) VALUES
 (1, 'Administrator'),
-(2, 'Noc');
+(2, 'Noc'),
+(3, 'Jaringan'),
+(4, 'Sales');
 
 -- --------------------------------------------------------
 
@@ -201,7 +236,8 @@ INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`, `is_active
 (13, 8, 'Data User Admin', 'ManagementUser', 'mdi mdi-account-multiple-plus', 1),
 (27, 4, 'Pelanggan', 'management', 'mdi mdi-account-multiple', 1),
 (28, 4, 'Keluhan', 'management/keluhan', 'mdi mdi-clipboard-account', 1),
-(29, 8, 'Data User Petugas', 'ManagementUser/petugas', 'mdi mdi-account-switch', 1);
+(29, 8, 'Data User Petugas', 'ManagementUser/petugas', 'mdi mdi-account-switch', 1),
+(30, 4, 'Berita', 'management/berita', 'mdi mdi-newspaper', 1);
 
 -- --------------------------------------------------------
 
@@ -219,6 +255,12 @@ CREATE TABLE `user_token` (
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indeks untuk tabel `berita`
+--
+ALTER TABLE `berita`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeks untuk tabel `keluhan`
@@ -279,22 +321,28 @@ ALTER TABLE `user_token`
 --
 
 --
+-- AUTO_INCREMENT untuk tabel `berita`
+--
+ALTER TABLE `berita`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
 -- AUTO_INCREMENT untuk tabel `keluhan`
 --
 ALTER TABLE `keluhan`
-  MODIFY `id_keluhan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_keluhan` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_access_menu`
 --
 ALTER TABLE `user_access_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_google`
@@ -312,13 +360,13 @@ ALTER TABLE `user_menu`
 -- AUTO_INCREMENT untuk tabel `user_role`
 --
 ALTER TABLE `user_role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_sub_menu`
 --
 ALTER TABLE `user_sub_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_token`
