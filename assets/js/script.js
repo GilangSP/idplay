@@ -1422,3 +1422,160 @@ function deleteUserAdmin(id) {
 		},
 	});
 }
+
+// #################################################################################################################
+// USER
+// ADD
+function addUserPetugas() {
+	$("#UserAdminModalLabel").html("Add New User Petugas");
+	$(".modal-footer button[type=submit]").html("Add");
+	$(".modal-content form").attr(
+		"action",
+		base_url() + "/ManagementUser/petugas"
+	);
+	$(".modal-content form")[0].reset();
+	$(".modal-content form").validate().resetForm();
+}
+
+// Edit
+function editUserPetugas(id) {
+	$("#UserAdminModalLabel").html("Edit User Petugas");
+	$(".modal-footer button[type=submit]").html("Edit");
+	$(".modal-content form").attr(
+		"action",
+		base_url() + "/ManagementUser/editUserPetugasModal"
+	);
+
+	const idedit = id;
+	$.ajax({
+		url: base_url() + "/ManagementUser/getUserAdminModal",
+		data: {
+			id: idedit,
+		},
+		method: "POST",
+		dataType: "json",
+		success: function (data) {
+			$("#nama").val(data.name);
+			$("#username").val(data.username);
+			$("#email").val(data.email);
+			$("#role_id").val(data.role_id);
+			$("#id").val(data.id);
+		},
+	});
+}
+
+// Delete
+function deleteUserPetugas(id) {
+	$(".modal-footer button[type=submit]").html("Delete");
+	$(".modal-content form").attr(
+		"action",
+		base_url() + "/ManagementUser/deleteUserPetugasModal"
+	);
+
+	const iddelete = id;
+	$.ajax({
+		url: base_url() + "/ManagementUser/getUserAdminModal",
+		data: {
+			id: iddelete,
+		},
+		method: "POST",
+		dataType: "json",
+		success: function (data) {
+			$("#id_s").val(data.id);
+			// console.log(data);
+		},
+	});
+}
+
+// #################################################################################################################
+// Berita
+function tambahBerita() {
+	var urle = base_url() + "/management/inputBerita";
+	$("#url").val(urle);
+	$(".data-form-berita").html(`
+			<div class="col-md-5">
+				<div class="image-preview" id="imagePreview_1">
+					<img src="" alt="Image Preview" class="image-preview__image img-thumbnail input_data_1">
+					<span class="image-preview__default-text text_input_data_1">
+						Image Preview
+					</span>
+				</div>
+			</div>
+		`);
+	viewImage();
+	reset();
+}
+
+// edit
+function editBerita() {
+	var id = $("#btnEdit").data("id");
+	var urle = base_url() + "/management/editBeritaModal/" + id;
+	const idedit = id;
+	$.ajax({
+		url: base_url() + "/management/getBeritaModal",
+		data: {
+			id: idedit,
+		},
+		method: "POST",
+		dataType: "json",
+		success: function (data) {
+			$("#judul").val(data.judul);
+			$("#subject").val(data.subject);
+			$("#isine").val(data.isi);
+			$(".data-form-berita").html(`
+				<div class="col-md-5">
+					<div class="image-preview">
+						<img src="${
+							base_url() + "/assets/img/berita/" + data.image
+						}" alt="Image Preview" class="img-thumbnail">
+					</div>
+				</div>
+				<h2 class="col-md-1 image-panah">>></h2>
+				<div class="col-md-5">
+					<div class="image-preview" id="imagePreview_1">
+						<img src="" alt="Image Preview" class="image-preview__image img-thumbnail input_data_1">
+						<span class="image-preview__default-text text_input_data_1">
+							Image Preview
+						</span>
+					</div>
+				</div>
+				`);
+			$("#tanggal").val(data.tanggal);
+			$("#id").val(data.id);
+			$("#url").val(urle);
+			$("#image").val(null);
+			viewImage();
+		},
+	});
+}
+
+function reset() {
+	$("#judul").val(null);
+	$("#subject").val(null);
+	$("#isine").val(null);
+	$("#tanggal").val(null);
+	$("#image").val(null);
+}
+
+// Delete
+function deleteBerita(id) {
+	$(".modal-footer button[type=submit]").html("Delete");
+	$(".modal-content form").attr(
+		"action",
+		base_url() + "/management/deleteBeritaModal"
+	);
+
+	const iddelete = id;
+	$.ajax({
+		url: base_url() + "/management/getUserAdminModal",
+		data: {
+			id: iddelete,
+		},
+		method: "POST",
+		dataType: "json",
+		success: function (data) {
+			$("#id_s").val(data.id);
+			// console.log(data);
+		},
+	});
+}

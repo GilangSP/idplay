@@ -45,20 +45,32 @@
 								<td><?= $u['name']; ?></td>
 								<td><?= $u['email']; ?></td>
 								<td><?= $u['role']; ?></td>
-								<?php if ($u['is_active'] == 1) : ?>
-									<h5 class="text-success">Active</h5>
-								<?php else : ?>
-									<h5 class="text-danger">Non Active</h5>
-								<?php endif; ?>
 								<td>
-									<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu<?= $u['id']; ?>" aria-expanded="true" aria-controls="collapseTwo">
+									<?php if ($u['is_active'] == 1) : ?>
+										<h5 class="text-success">Active</h5>
+									<?php else : ?>
+										<h5 class="text-danger">Non Active</h5>
+									<?php endif; ?>
+								</td>
+								<td>
+									<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu<?= $u['id']; ?>"
+										aria-expanded="true" aria-controls="collapseTwo">
 										<i style="color: darkred;" class="fas fa-fw fa-bars"></i>
 									</a>
-									<div id="menu<?= $u['id']; ?>" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-										<div class="bg-white py-2 collapse-inner container rounded">
-											<a type="button" href="<?= base_url('ManagementUser/detailUserAdmin/') . $u['id']; ?>" class="btn btn-sm btn-primary" data-id="<?= $u['id']; ?>"><i class="far fa-fw fa-file-alt"></i></a>
-											<button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#newUserAdminModal" data-id="<?= $u['id']; ?>" onclick="editUserAdmin(`<?= $u['id']; ?>`)"><i class="fas fa-fw fa-edit"></i></button>
-											<button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteMenuModal" data-id="<?= $u['id']; ?>" onclick="deleteUserAdmin(`<?= $u['id']; ?>`)"><i class="fas fa-fw fa-trash-alt"></i></button>
+									<div class="dropdown float-end">
+										<a href="#" class="dropdown-toggle text-muted arrow-none" data-bs-toggle="dropdown"
+											aria-expanded="false">
+											<i class="mdi mdi-dots-vertical font-18"></i>
+										</a>
+										<div class="dropdown-menu dropdown-menu-end">
+											<!-- item-->
+											<button class="dropdown-item" data-toggle="modal" data-target="#newUserPetugasModal"
+												data-id="<?= $u['id']; ?>" onclick="editUserAdmin(`<?= $u['id']; ?>`)"><i
+													class="mdi mdi-pencil me-1"></i> Edit </button>
+											<!-- item-->
+											<button class="dropdown-item" data-toggle="modal" data-target="#deleteMenuModal"
+												data-id="<?= $u['id']; ?>" onclick="deleteUserAdmin(`<?= $u['id']; ?>`)"><i
+													class="mdi mdi-delete me-1"></i> Hapus </button>
 										</div>
 									</div>
 								</td>

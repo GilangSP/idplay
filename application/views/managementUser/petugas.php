@@ -12,7 +12,7 @@
 	<!-- DataTales Example -->
 	<div class="card shadow mb-4">
 		<div class="card-header py-3">
-			<h6 class="m-0 font-weight-bold text-danger">DataTables User Petugas</h6>
+			<h6 class="m-0 font-weight-bold text-primary">DataTables User Petugas</h6>
 		</div>
 		<div class="card-body">
 			<div class="table-responsive">
@@ -27,8 +27,8 @@
 					?>
 				<?php endif; ?>
 				<?= $this->session->flashdata('message_managementUser'); ?>
-				<button type="button" class="btn btn-danger mb-3" data-toggle="modal" data-target="#newUserAdminModal"
-					onclick="addUserAdmin()">Add New User Petugas</button>
+				<button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newUserPetugasModal"
+					onclick="addUserPetugas()">Add New User Petugas</button>
 				<table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
 					<thead>
 						<tr>
@@ -61,21 +61,20 @@
 									aria-controls="collapseTwo">
 									<i style="color: darkred;" class="fas fa-fw fa-bars"></i>
 								</a>
-								<div id="menu<?= $u['id']; ?>" class="collapse" aria-labelledby="headingTwo"
-									data-parent="#accordionSidebar">
-									<div class="bg-white py-2 collapse-inner container rounded">
-										<a type="button"
-											href="<?= base_url('ManagementUser/detailUserAdmin/') . $u['id']; ?>"
-											class="btn btn-sm btn-primary" data-id="<?= $u['id']; ?>"><i
-												class="far fa-fw fa-file-alt"></i></a>
-										<button type="button" class="btn btn-sm btn-success" data-toggle="modal"
-											data-target="#newUserAdminModal" data-id="<?= $u['id']; ?>"
-											onclick="editUserAdmin(`<?= $u['id']; ?>`)"><i
-												class="fas fa-fw fa-edit"></i></button>
-										<button type="button" class="btn btn-sm btn-danger" data-toggle="modal"
-											data-target="#deleteMenuModal" data-id="<?= $u['id']; ?>"
-											onclick="deleteUserAdmin(`<?= $u['id']; ?>`)"><i
-												class="fas fa-fw fa-trash-alt"></i></button>
+								<div class="dropdown float-end">
+									<a href="#" class="dropdown-toggle text-muted arrow-none" data-bs-toggle="dropdown"
+										aria-expanded="false">
+										<i class="mdi mdi-dots-vertical font-18"></i>
+									</a>
+									<div class="dropdown-menu dropdown-menu-end">
+										<!-- item-->
+										<button class="dropdown-item" data-toggle="modal" data-target="#newUserPetugasModal"
+											data-id="<?= $u['id']; ?>" onclick="editUserPetugas(`<?= $u['id']; ?>`)"><i
+												class="mdi mdi-pencil me-1"></i> Edit </button>
+										<!-- item-->
+										<button class="dropdown-item" data-toggle="modal" data-target="#deleteMenuModal"
+											data-id="<?= $u['id']; ?>" onclick="deleteUserPetugas(`<?= $u['id']; ?>`)"><i
+												class="mdi mdi-delete me-1"></i> Hapus </button>
 									</div>
 								</div>
 							</td>
@@ -95,12 +94,12 @@
 <!-- End of Main Content -->
 
 <!-- Modal -->
-<div class="modal fade" id="newUserAdminModal" tabindex="-1" role="dialog" aria-labelledby="UserAdminModalLabel"
+<div class="modal fade" id="newUserPetugasModal" tabindex="-1" role="dialog" aria-labelledby="UserPetugasModalLabel"
 	aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="UserAdminModalLabel">Add New User</h5>
+				<h5 class="modal-title" id="UserPetugasModalLabel">Add New User Petugas</h5>
 				<button onclick="javascript:void(0);" data-dismiss="modal" class="btn btn-close"></button>
 			</div>
 			<form method="POST">
@@ -134,9 +133,12 @@
 					<div class="form-floating mb-2">
 						<select class="form-select" name="role_id" id="role_id" aria-label="Floating label select">
 							<option value="">Select Role User</option>
-							<?php foreach ($User_Role as $ur) : ?>
-							<option value="<?= $ur['id']; ?>"><?= $ur['role']; ?></option>
-							<?php endforeach; ?>
+							<?php foreach ($User_Role as $ur) : 
+								if($ur['id'] !== "1"):?>
+								<option value="<?= $ur['id']; ?>"><?= $ur['role']; ?></option>
+							<?php
+							endif; 
+						endforeach; ?>
 						</select>
 						<label for="floatingJenisUsaha">Pilih role user</label>
 					</div>
@@ -153,7 +155,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button type="submit" class="btn btn-danger">Add</button>
+					<button type="submit" class="btn btn-primary">Add</button>
 				</div>
 			</form>
 		</div>
@@ -174,7 +176,7 @@
 				<input type="hidden" name="id_s" id="id_s">
 				<div class="modal-footer">
 					<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-					<button type="submit" class="btn btn-danger">Delete</button>
+					<button type="submit" class="btn btn-primary">Delete</button>
 				</div>
 			</form>
 		</div>

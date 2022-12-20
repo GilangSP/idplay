@@ -56,6 +56,8 @@
 
 	<link rel="stylesheet" href="<?= base_url(); ?>assets/css/style.css">
 	<link rel="stylesheet" href="<?= base_url(); ?>assets/jQuery-Autocomplete-1.4.11">
+	<link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
+	<script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
 	<style type="text/css">
 		.autocomplete-suggestions {
 			border: 1px solid #999;
@@ -127,14 +129,6 @@
 					<?php else: ?>
 					<li class="nav-item"><a href="<?= base_url(); ?>pelayanan/artikel" class="nav-link font-weight-bold">Artikel</a>
 					</li>
-					<?php endif; ?>
-					<?php if($title == "Tentang Kami"): ?>
-					<li class="nav-item active"><a href="<?= base_url(); ?>pelayanan/tentang_kami"
-							class="nav-link font-weight-bold">Tentang
-							Kami</a></li>
-					<?php else: ?>
-					<li class="nav-item"><a href="<?= base_url(); ?>pelayanan/tentang_kami" class="nav-link font-weight-bold">Tentang
-							Kami</a></li>
 					<?php endif; ?>
 					<?php if($title == "Hubungi Kami"): ?>
 					<li class="nav-item active"><a href="<?= base_url(); ?>pelayanan/hubungi_kami"

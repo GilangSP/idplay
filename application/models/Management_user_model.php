@@ -8,6 +8,7 @@ class Management_user_model extends CI_Model
         $query = "SELECT `user`.*, `user_role`.`role`
 				  FROM `user` JOIN `user_role`
 				  ON `user`.`role_id` = `user_role`.`id`
+				  WHERE `user`.`role_id`='1'
 				";
         return $this->db->query($query)->result_array();
     }
@@ -21,6 +22,14 @@ class Management_user_model extends CI_Model
 				";
         return $this->db->query($query)->result_array();
     }
+
+	public function getUserRolePetugas(){
+		$query = "SELECT `user`.*, `user_role`.`role`
+					FROM `user` JOIN `user_role`
+					ON `user`.`role_id` = `user_role`.`id`
+					WHERE `user`.`role_id`>='2'";
+		return $this->db->query($query)->result_array();
+	}
 
     // Data User Admin
     public function deleteUserAdminById($id)

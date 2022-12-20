@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 30 Nov 2022 pada 02.50
--- Versi server: 10.4.25-MariaDB
--- Versi PHP: 8.0.23
+-- Waktu pembuatan: 12 Des 2022 pada 10.30
+-- Versi server: 10.4.24-MariaDB
+-- Versi PHP: 8.0.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,6 +34,13 @@ CREATE TABLE `keluhan` (
   `gambar` text NOT NULL,
   `validasi` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `keluhan`
+--
+
+INSERT INTO `keluhan` (`id_keluhan`, `id_p`, `keluhan`, `gambar`, `validasi`) VALUES
+(1, '110022993', 'its', 'Screenshot_2022-04-13_232513.png', 1);
 
 -- --------------------------------------------------------
 
@@ -79,7 +86,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `username`, `email`, `image`, `password`, `role_id`, `is_active`, `date_created`) VALUES
-(1, 'Administrator', 'admin', 'idplay@gmail.com', 'default.png', '$2y$10$yunSzMoO5uFDVZpBtn5La.sMmCgZ8cxVn317tqxGEsKfnrN8B2Pfi', 1, 1, 1655427300);
+(1, 'Administrator', 'admin', 'idplay@gmail.com', 'default.png', '$2y$10$yunSzMoO5uFDVZpBtn5La.sMmCgZ8cxVn317tqxGEsKfnrN8B2Pfi', 1, 1, 1655427300),
+(17, 'nonik', 'nonik', 'nonik@gmail.com', 'default.png', '$2y$10$IRHAYk/m/jKmXfctK279L.TwBEkiehsvwXaFUI7gC16VA05z8tyh6', 2, 1, 1670571587);
 
 -- --------------------------------------------------------
 
@@ -192,7 +200,8 @@ INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`, `is_active
 (7, 2, 'Change Password', 'user/changePassword', 'mdi mdi-account-key', 1),
 (13, 8, 'Data User Admin', 'ManagementUser', 'mdi mdi-account-multiple-plus', 1),
 (27, 4, 'Pelanggan', 'management', 'mdi mdi-account-multiple', 1),
-(28, 4, 'Keluhan', 'management/keluhan', 'mdi mdi-clipboard-account', 1);
+(28, 4, 'Keluhan', 'management/keluhan', 'mdi mdi-clipboard-account', 1),
+(29, 8, 'Data User Petugas', 'ManagementUser/petugas', 'mdi mdi-account-switch', 1);
 
 -- --------------------------------------------------------
 
@@ -273,13 +282,13 @@ ALTER TABLE `user_token`
 -- AUTO_INCREMENT untuk tabel `keluhan`
 --
 ALTER TABLE `keluhan`
-  MODIFY `id_keluhan` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_keluhan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_access_menu`
@@ -309,7 +318,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT untuk tabel `user_sub_menu`
 --
 ALTER TABLE `user_sub_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_token`

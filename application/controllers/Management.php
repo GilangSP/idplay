@@ -131,7 +131,7 @@ class Management extends CI_Controller
 					];
 					$this->db->insert('keluhan', $data);
 					$this->session->set_flashdata(
-					'message_keluhan',
+						'message_keluhan',
 						'<div class="alert alert-success" role="alert">
 							Tambah Keluhan Pelanggan Berhasil!
 						</div>'
@@ -140,9 +140,9 @@ class Management extends CI_Controller
 				} else {
 					echo $this->upload->display_errors();
 				}
-			}else{
+			} else {
 				$this->session->set_flashdata(
-				'message_keluhan',
+					'message_keluhan',
 					'<div class="alert alert-danger" role="alert">
 						Harus Upload Image!
 					</div>'
@@ -176,20 +176,53 @@ class Management extends CI_Controller
 			$this->load->view('management/keluhan', $data);
 			$this->load->view('templates/footer');
 		} else {
-			$data = [
-				'id_p' => $this->input->post('id_p'),
-				'keluhan' => $this->input->post('keluhan'),
-				'gambar' => $this->input->post('gambar'),
-				'validasi' => 1,
-			];
-			$this->menu->editPelangganById($_POST['id'], $data);
-			$this->session->set_flashdata(
-				'message_keluhan',
-				'<div class="alert alert-success" role="alert">
-					Success Edit Keluhan Pelanggan!
-				</div>'
-			);
-			redirect('management/keluhan');
+			// cek image
+			$upload_image = $_FILES['image']['name'];
+			if ($upload_image) {
+				$config['allowed_types'] = 'gif|jpg|png|jpeg|webp|heic|heif';
+				$config['max_size'] = '5048';
+				$config['upload_path'] = './assets/img/keluhan/';
+
+				$this->load->library('upload', $config);
+				if ($this->upload->do_upload('image')) {
+					$old_image = $data['user']['image'];
+					if ($old_image != 'default.png') {
+						unlink(FCPATH . 'assets/img/keluhan/' . $old_image);
+					}
+
+					$new_image = $this->upload->data('file_name');
+					$data = [
+						'id_p' => $this->input->post('id_p'),
+						'keluhan' => $this->input->post('keluhan'),
+						'gambar' => $new_image,
+						'validasi' => $this->input->post('validasi')
+					];
+					$this->menu->editKeluhanById($_POST['id'], $data);
+					$this->session->set_flashdata(
+						'message_keluhan',
+						'<div class="alert alert-success" role="alert">
+							Success Edit Keluhan Pelanggan!
+						</div>'
+					);
+					redirect('management/keluhan');
+				} else {
+					echo $this->upload->display_errors();
+				}
+			} else {
+				$data = [
+					'id_p' => $this->input->post('id_p'),
+					'keluhan' => $this->input->post('keluhan'),
+					'validasi' => $this->input->post('validasi')
+				];
+				$this->menu->editKeluhanById($_POST['id'], $data);
+				$this->session->set_flashdata(
+					'message_keluhan',
+					'<div class="alert alert-success" role="alert">
+						Success Edit Keluhan Pelanggan!
+					</div>'
+				);
+				redirect('management/keluhan');
+			}
 		}
 	}
 
@@ -204,5 +237,136 @@ class Management extends CI_Controller
 			</div>'
 		);
 		redirect('management/keluhan');
+	}
+
+	public function berita()
+	{
+		$data['title'] = 'Berita';
+		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+		$data['berita'] = $this->db->get_where('berita', ['id_role' => $this->session->userdata('role_id')])->result_array();
+
+		$this->load->view('templates/header', $data);
+		$this->load->view('templates/sidebar', $data);
+		$this->load->view('templates/topbar', $data);
+		$this->load->view('management/berita', $data);
+		$this->load->view('templates/footer');
+	}
+
+	public function inputBerita()
+	{
+		$upload_image = $_FILES['image']['name'];
+		if ($upload_image) {
+			$config['allowed_types'] = 'gif|jpg|png|jpeg|webp|heic|heif';
+			$config['max_size'] = '5048';
+			$config['upload_path'] = './assets/img/berita/';
+
+			$this->load->library('upload', $config);
+			if ($this->upload->do_upload('image')) {
+
+				$new_image = $this->upload->data('file_name');
+				$data = [
+					'judul' => $this->input->post('judul'),
+					'subject' => $this->input->post('subject'),
+					'isi' => $this->input->post('isi'),
+					'image' => $new_image,
+					'tanggal' => $this->input->post('tanggal'),
+					'id_role' => $this->session->userdata('role_id'),
+				];
+				$this->db->insert('berita', $data);
+				$this->session->set_flashdata(
+					'message_berita',
+					'<div class="alert alert-success" role="alert">
+						Tambah Berita Berhasil!
+					</div>'
+				);
+				redirect('management/berita');
+			} else {
+				echo $this->upload->display_errors();
+			}
+		} else {
+			$this->session->set_flashdata(
+				'message_berita',
+				'<div class="alert alert-danger" role="alert">
+					Harus Upload Image!
+				</div>'
+			);
+			redirect('management/berita');
+		}
+	}
+
+	public function getBeritaModal()
+	{
+		$data = $this->db->get_where('berita', ['id' => $_POST['id']])->row_array();
+		echo json_encode($data);
+	}
+
+	public function editBerita($id)
+	{
+		$data = $this->db->get_where('berita', ['id' => $id])->row_array();
+		// cek image
+		$upload_image = $_FILES['image']['name'];
+		if ($upload_image) {
+			$config['allowed_types'] = 'gif|jpg|png|jpeg|webp|heic|heif';
+			$config['max_size'] = '5048';
+			$config['upload_path'] = './assets/img/berita/';
+
+			$this->load->library('upload', $config);
+			if ($this->upload->do_upload('image')) {
+				$old_image = $data['berita']['image'];
+				if ($old_image != 'default.png') {
+					unlink(FCPATH . 'assets/img/berita/' . $old_image);
+				}
+
+				$new_image = $this->upload->data('file_name');
+				$data = [
+					'judul' => $this->input->post('judul'),
+					'subject' => $this->input->post('subject'),
+					'isi' => $this->input->post('isi'),
+					'image' => $new_image,
+					'tanggal' => $this->input->post('tanggal'),
+					'id_role' => $this->session->userdata('role_id'),
+				];
+				$this->menu->editBeritaById($_POST['id'], $data);
+				$this->session->set_flashdata(
+					'message_keluhan',
+					'<div class="alert alert-success" role="alert">
+			Success Edit Keluhan Pelanggan!
+		</div>'
+				);
+				redirect('management/berita');
+			} else {
+				echo $this->upload->display_errors();
+			}
+		} else {
+			$data = [
+				'judul' => $this->input->post('judul'),
+				'subject' => $this->input->post('subject'),
+				'isi' => $this->input->post('isi'),
+				'tanggal' => $this->input->post('tanggal'),
+				'id_role' => $this->session->userdata('role_id'),
+			];
+			$this->menu->editBeritaById($_POST['id'], $data);
+			$this->session->set_flashdata(
+				'message_keluhan',
+				'<div class="alert alert-success" role="alert">
+			Success Edit Keluhan Pelanggan!
+		</div>'
+			);
+			redirect('management/berita');
+		}
+	}
+
+	public function deleteBeritaModal()
+	{
+		$this->menu->deletePelangganById($this->input->post('id_s'));
+
+		$this->session->set_flashdata(
+			'message_berita',
+			'<div class="alert alert-success" role="alert">
+				Success Delete Berita!
+			</div>'
+		);
+		redirect('management/berita');
 	}
 }

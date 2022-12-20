@@ -103,8 +103,8 @@
     <script src="<?= base_url(); ?>assets/frontend/js/aos.js"></script>
     <script src="<?= base_url(); ?>assets/frontend/js/jquery.animateNumber.min.js"></script>
     <script src="<?= base_url(); ?>assets/frontend/js/scrollax.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false">
-    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvtEWZ71MgdB_u_n1p0PEh7VTKcEpM6KE&callback=initialize">
+	</script>
     <script src="<?= base_url(); ?>assets/frontend/js/google-map.js"></script>
     <script src="<?= base_url(); ?>assets/frontend/js/main.js"></script>
 

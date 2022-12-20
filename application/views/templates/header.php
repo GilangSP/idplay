@@ -28,6 +28,8 @@
 
 	<link rel="stylesheet" href="<?= base_url(); ?>assets/css/style.css">
 	<link rel="stylesheet" href="<?= base_url(); ?>assets/jQuery-Autocomplete-1.4.11">
+	<link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
+	<script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
 	<style type="text/css">
 		.autocomplete-suggestions {
 			border: 1px solid #999;

@@ -80,4 +80,44 @@ class Menu_model extends CI_Model
 		$this->db->join('pelanggan p','k.id_p=p.cid','left');
 		return $this->db->get();
 	}
+
+	public function getArtikel()
+	{
+		$query = "SELECT `berita`.*, `user_role`.`role`
+		FROM `berita` JOIN `user_role`
+		ON `berita`.`id_role` = `user_role`.`id`
+		";
+		return $this->db->query($query)->result_array();
+	}
+
+	//fetch books
+	function get_beritas($limit, $start, $st = NULL)
+	{
+		if ($st == "NIL") $st = "";
+		$sql = "SELECT `berita`.*, `user_role`.`role`
+				FROM `berita` JOIN `user_role`
+				ON `berita`.`id_role` = `user_role`.`id` WHERE judul LIKE '%$st%' ORDER BY
+				`berita`.`id` DESC LIMIT " . $start . ", " . $limit;
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+
+	function get_beritas_count($st = NULL)
+	{
+		if ($st == "NIL") $st = "";
+		$sql = "SELECT `berita`.*, `user_role`.`role`
+				FROM `berita` JOIN `user_role`
+				ON `berita`.`id_role` = `user_role`.`id` WHERE judul LIKE '%$st%'";
+		$query = $this->db->query($sql);
+		return $query->num_rows();
+	}
+
+	public function getArtikelDetail($id)
+	{
+		$query = "SELECT `berita`.*, `user_role`.`role`
+		FROM `berita` JOIN `user_role`
+		ON `berita`.`id_role` = `user_role`.`id` WHERE `berita`.`id` = '$id'
+		";
+		return $this->db->query($query)->row_array();
+	}
 }

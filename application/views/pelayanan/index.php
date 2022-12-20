@@ -616,66 +616,22 @@
     		<div class="row ftco-animate">
     			<div class="col-md-12">
     				<div class="carousel-testimony owl-carousel ftco-owl">
+
+					<?php foreach ($user as $u):?>
     					<div class="item">
     						<div class="testimony-wrap text-center py-4 pb-5">
     							<div class="user-img mb-4"
-    								style="background-image: url(<?= base_url(); ?>assets/frontend/images/user.png)">
+    								style="background-image: url(<?= base_url(); ?>assets/img/profile/<?= $u['image']; ?>)">
     							</div>
     							<div class="text pt-4">
-    								<p class="mb-4">Di bidang marketing.</p>
-    								<p class="name">Nama User</p>
-    								<span class="position">Marketing Manager</span>
+    								<p class="mb-4">Di bidang <?= $u['role']; ?>.</p>
+    								<p class="name"><?= $u['name']; ?></p>
+    								<span class="position"><?= $u['role']; ?></span>
     							</div>
     						</div>
     					</div>
-    					<div class="item">
-    						<div class="testimony-wrap text-center py-4 pb-5">
-    							<div class="user-img mb-4"
-    								style="background-image: url(<?= base_url(); ?>assets/frontend/images/user.png)">
-    							</div>
-    							<div class="text pt-4">
-    								<p class="mb-4">Dibidang desain.</p>
-    								<p class="name">Nama User</p>
-    								<span class="position">Interface Designer</span>
-    							</div>
-    						</div>
-    					</div>
-    					<div class="item">
-    						<div class="testimony-wrap text-center py-4 pb-5">
-    							<div class="user-img mb-4"
-    								style="background-image: url(<?= base_url(); ?>assets/frontend/images/user.png)">
-    							</div>
-    							<div class="text pt-4">
-    								<p class="mb-4">Dibidang desain website UI.</p>
-    								<p class="name">Nama User</p>
-    								<span class="position">UI Designer</span>
-    							</div>
-    						</div>
-    					</div>
-    					<div class="item">
-    						<div class="testimony-wrap text-center py-4 pb-5">
-    							<div class="user-img mb-4"
-    								style="background-image: url(<?= base_url(); ?>assets/frontend/images/user.png)">
-    							</div>
-    							<div class="text pt-4">
-    								<p class="mb-4">Dibidang web developer.</p>
-    								<p class="name">Nama User</p>
-    								<span class="position">Web Developer</span>
-    							</div>
-    						</div>
-    					</div>
-    					<div class="item">
-    						<div class="testimony-wrap text-center py-4 pb-5">
-    							<div class="user-img mb-4"
-    								style="background-image: url(<?= base_url(); ?>assets/frontend/images/user.png)">
-    							</div>
-    							<div class="text pt-4">
-    								<p class="mb-4">Dibidang analis sistem.</p>
-    								<p class="name">Nama User</p>
-    								<span class="position">System Analyst</span>
-    							</div>
-    						</div>
-    					</div>
+					<?php endforeach; ?>
+
     				</div>
     			</div>
     		</div>
@@ -867,22 +823,22 @@
     	});
 		
 		// function btne(){
-			$('#submit').submit(function(e){
+		$('#submit').submit(function(e){
 			e.preventDefault();
-			var cidne = document.getElementById("cid").value;
-			var floatingjpne = document.getElementById("floatingjp").value;
-			var inpFilene = document.getElementById('image_1').value;
+			var cidne = $("#cid").val();
+			var floatingjpne = $("#floatingjp").val();
+			var inpFilene = $("#image_1").val();
 			if(cidne == "" || floatingjpne == ""){
 				Swal.fire({
-				icon: 'error',
-				title: 'Oops...',
-				text: 'Harus Di isi semua!',
+					icon: 'error',
+					title: 'Oops...',
+					text: 'Harus Di isi semua!',
 				});
 			}else if(inpFilene == ""){
 				Swal.fire({
-				icon: 'error',
-				title: 'Oops...',
-				text: 'Image Harus diupload!',
+					icon: 'error',
+					title: 'Oops...',
+					text: 'Image Harus diupload!',
 				});
 			}else{
 				$.ajax({
@@ -895,18 +851,14 @@
 					async:false,
 					success: function(data){
 						Swal.fire({
-						icon: 'success',
-						title: 'Berhasil',
-						text: 'Anda Berhasil Menyimpan!',
+							icon: 'success',
+							title: 'Berhasil',
+							text: 'Anda Berhasil Menyimpan!',
 						});
-						// alert(cidne + ' ' + floatingjpne + ' ' + inpFile_1);
 						$("#cid").val(null);
-						$("#floatingCID").val(null);
-						$("#floatingjp").val("");
-						inpFilene.val(null);
-						previewDefaultText_1.style.display = null;
-						previewImage_1.style.display = null;
-						previewImage_1.setAttribute("src", "");
+						$("#floatingCID").val("");
+						$("#floatingjp").val(null);
+						$("#image_1").val(null);
 					}
 				});
 			}

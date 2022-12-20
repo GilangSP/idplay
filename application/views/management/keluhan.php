@@ -96,26 +96,11 @@
 								</td>
 								<td>
 									<?php if($k['validasi'] == 1): ?>
-										<span class="badge badge-secondary btn-icon-split">
-											<span class="icon text-white-50">
-												<i class="fas fa-arrow-right"></i>
-											</span>
-											<span class="text">Belum Dikerjakan</span>
-										</span>
+										<h5 class="text-info">Belum Dikerjakan</h5>
 									<?php elseif($k['validasi'] == 2): ?>
-										<span class="badge badge-success btn-icon-split">
-											<span class="icon text-white-50">
-												<i class="fas fa-check"></i>
-											</span>
-											<span class="text">Sudah Dikerjakan</span>
-										</span>
+										<h5 class="text-success">Sudah Dikerjakan</h5>
 									<?php else: ?>
-										<span class="badge badge-danger btn-icon-split">
-											<span class="icon text-white-50">
-												<i class="fas fa-times"></i>
-											</span>
-											<span class="text">Komplain Ditolak</span>
-										</span>
+										<h5 class="text-danger">Komplain Ditolak</h5>
 									<?php endif; ?>
 								</td>
 								<td>
@@ -168,14 +153,14 @@
 
 						<ul class="nav nav-pills nav-justified form-wizard-header mb-3">
 							<li class="nav-item">
-								<a href="#usaha" data-bs-toggle="tab" data-toggle="tab"
+								<a href="#pelanggan" data-bs-toggle="tab" data-toggle="tab"
 									class="nav-link rounded-0 pt-2 pb-2">
 									<i class="mdi mdi-account me-1"></i>
 									<span class="d-none d-sm-inline">Pelanggan</span>
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="#jp" data-bs-toggle="tab" data-toggle="tab"
+								<a href="#keluhan" data-bs-toggle="tab" data-toggle="tab"
 									class="nav-link rounded-0 pt-2 pb-2">
 									<i class="mdi mdi-file-document me-1"></i>
 									<span class="d-none d-sm-inline">Keluhan</span>
@@ -199,13 +184,13 @@
 
 							<!-- DATA 1 -->
 							<!-- ################################################################################################################################# -->
-							<div class="tab-pane" id="usaha">
+							<div class="tab-pane" id="pelanggan">
 								<div class="row">
 									<div class="col-12">
 
 										<div class="form-floating mb-2">
 											<input type="text" class="form-control" name="cid" id="floatingCID" placeholder="Masukan CID" />
-											<input type="text" name="cid" id="cid">
+											<input type="hidden" name="cid" id="cid">
 											<label for="form-control">Nomer CID</label>
 										</div>
 
@@ -217,7 +202,7 @@
 
 							<!-- DATA 2 -->
 							<!-- ################################################################################################################################# -->
-							<div class=" tab-pane" id="jp">
+							<div class=" tab-pane" id="keluhan">
 								<div class="row">
 									<div class="col-12">
 										<div class="form-floating mb-2">
@@ -244,6 +229,16 @@
 												<option value="o">Others</option>
 											</select>
 											<label for="floatingKeluhan">Optional Keluhan</label>
+										</div>
+
+										<div class="form-floating mb-2">
+											<select class="form-select" id="validasi" name="validasi" aria-label="Floating label select example">
+												<option selected>Pilih Validasi</option>
+												<option value="1">Belum Dikerjakan</option>
+												<option value="2">Sudah Dikerjakan</option>
+												<option value="3">Komplain Ditolak</option>
+											</select>
+											<label for="floatingValidasi">Validasi</label>
 										</div>
 
 										<div class="row mb-3">
@@ -273,7 +268,6 @@
 											</div>
 										</div>
 									</div> <!-- end col -->
-									<div class="data-form-jp"></div>
 								</div> <!-- end row -->
 							</div>
 
