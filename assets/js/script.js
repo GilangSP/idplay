@@ -434,6 +434,28 @@ function addKeluhanPelanggan() {
 	$(".modal-content form").validate().resetForm();
 }
 
+function petugasKeluhanPelanggan(id) {
+	$("#InputModalLabel").html("Pilih Petugas Eksekusi");
+	$(".modal-footer button[type=submit]").html("Tambah Petugas");
+	$("#floatingCID").prop("disabled", false);
+	$(".modal-content form").attr(
+		"action",
+		base_url() + "/management/petugasKeluhanModal"
+	);
+	const idedit = id;
+	$.ajax({
+		url: base_url() + "/management/getKeluhanModal",
+		data: {
+			id: idedit,
+		},
+		method: "POST",
+		dataType: "json",
+		success: function (data) {
+			$("#id").val(data.id_keluhan);
+		},
+	});
+}
+
 // Edit
 function editKeluhanPelanggan(id) {
 	$("#InputModalLabel").html("Edit Pelanggan");
@@ -446,7 +468,7 @@ function editKeluhanPelanggan(id) {
 
 	const idedit = id;
 	$.ajax({
-		url: base_url() + "/management/getPelangganModal",
+		url: base_url() + "/management/getKeluhanModal",
 		data: {
 			id: idedit,
 		},

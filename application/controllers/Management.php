@@ -101,7 +101,8 @@ class Management extends CI_Controller
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
 		// $data['keluhan'] = $this->db->get('keluhan')->result_array();
-		$data['keluhan'] = $this->menu->KeluhanPelanggan()->result_array();
+		$data['keluhan'] = $this->menu->KeluhanPelanggan();
+		$data['usere'] = $this->db->get('user')->result_array();
 
 		$this->form_validation->set_rules('id_tu', 'Id Pelanggan', 'required');
 		// $this->form_validation->set_rules('floatingjp', 'Keluhan', 'required');
@@ -156,6 +157,34 @@ class Management extends CI_Controller
 	{
 		$data = $this->db->get_where('keluhan', ['id_keluhan' => $_POST['id']])->row_array();
 		echo json_encode($data);
+	}
+
+	public function petugasKeluhanModal()
+	{
+		$data['title'] = 'Keluhan';
+		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+		$data['keluhan'] = $this->menu->KeluhanPelanggan();
+		$data['usere'] = $this->db->get('user')->result_array();
+
+		$this->form_validation->set_rules('petugas', 'Pilih Petugas', 'required');
+
+		if ($this->form_validation->run() == false) {
+			redirect('management/keluhan');
+		} else {
+			$data = [
+				'id_petugas' => $this->input->post('petugas'),
+			];
+			$this->menu->editKeluhanById($_POST['id'], $data);
+			$this->session->set_flashdata(
+				'message_keluhan',
+				'<div class="alert alert-success" role="alert">
+					Success Tambah Petugas Keluhan Pelanggan!
+				</div>'
+			);
+			redirect('management/keluhan');
+			
+		}
 	}
 
 	public function editKeluhanModal()

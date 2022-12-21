@@ -34,8 +34,8 @@
 										', '
 										</div>'); ?>
 					<?= $this->session->flashdata('message_keluhan'); ?>
-					<button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#inputModal"
-						onclick="addKeluhanPelanggan()">Tambah Keluhan Pelanggan</button>
+					<!-- <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#inputModal"
+						onclick="addKeluhanPelanggan()">Tambah Keluhan Pelanggan</button> -->
 					<table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
 						<thead>
 							<tr>
@@ -44,6 +44,7 @@
 								<th scope="col">Nama</th>
 								<th scope="col">Keluhan</th>
 								<th scope="col">Gambar</th>
+								<th scope="col">Petugas</th>
 								<th scope="col">Validasi</th>
 								<th scope="col">Action</th>
 							</tr>
@@ -95,6 +96,13 @@
 									<img style="height: 80px; width: 80px;" src="<?= base_url('assets/img/keluhan/') . $k['gambar']; ?>" alt="" class="img-thumbnail">
 								</td>
 								<td>
+									<?php if($k['id_petugas'] == 1): ?>
+										Belum Ditentukan Petugas
+									<?php elseif($k['id_petugas'] > 1): ?>
+										<?= $k['name']; ?>
+									<?php endif; ?>
+								</td>
+								<td>
 									<?php if($k['validasi'] == 1): ?>
 										<h5 class="text-info">Belum Dikerjakan</h5>
 									<?php elseif($k['validasi'] == 2): ?>
@@ -110,6 +118,10 @@
 											<i class="mdi mdi-dots-vertical font-18"></i>
 										</a>
 										<div class="dropdown-menu dropdown-menu-end">
+											<!-- item-->
+											<button class="dropdown-item" data-toggle="modal" data-target="#petugasModal"
+												data-id="<?= $k['id_keluhan']; ?>" onclick="petugasKeluhanPelanggan(`<?= $k['id_keluhan']; ?>`)"><i
+													class="mdi mdi-account-search me-1"></i> Pilih Petugas </button>
 											<!-- item-->
 											<button class="dropdown-item" data-toggle="modal" data-target="#inputModal"
 												data-id="<?= $k['id_keluhan']; ?>"
@@ -311,6 +323,41 @@
 
 						</div> <!-- tab-content -->
 					</div> <!-- end #progressbarwizard-->
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="petugasModal" tabindex="-1" role="dialog" aria-labelledby="PetugasModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="PetugasModalLabel">Pilih Yang Akan Ditugaskan </h5>
+				<button onclick="javascript:void(0);" data-dismiss="modal" class="btn btn-close">
+				</button>
+			</div>
+			<form method="POST">
+				<input type="hidden" name="id" id="id">
+				<div class="modal-body">
+					<div class="form-floating mb-2">
+						<select class="form-select" name="petugas" id="petugas" aria-label="Floating label select">
+							<option value="">Select Petugas</option>
+							<?php foreach ($usere as $ue) : 
+								if($ue['role_id'] !== "1"):?>
+								<option value="<?= $ue['id']; ?>"><?= $ue['name']; ?></option>
+							<?php
+								endif; 
+							endforeach; ?>
+						</select>
+						<label for="floatingJenisUsaha">Pilih Petugas</label>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary">Tambah</button>
 				</div>
 			</form>
 		</div>

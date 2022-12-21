@@ -74,11 +74,18 @@ class Menu_model extends CI_Model
 		return $this->db->delete('pelanggan', ['cid' => $id]);
 	}
 
-	public function KeluhanPelanggan(){
+	public function KeluhanPelanggan()
+	{
 		$this->db->select('*');
 		$this->db->from("keluhan k");
-		$this->db->join('pelanggan p','k.id_p=p.cid','left');
-		return $this->db->get();
+		$this->db->join('pelanggan p', 'k.id_p=p.cid', 'left');
+		$this->db->join('user u', 'k.id_petugas=u.id', 'left');
+		return $this->db->get()->result_array();
+	}
+
+	public function editKeluhanById($id, $data)
+	{
+		return $this->db->where('id_keluhan', $id)->update('keluhan', $data);
 	}
 
 	public function getArtikel()
@@ -90,7 +97,7 @@ class Menu_model extends CI_Model
 		return $this->db->query($query)->result_array();
 	}
 
-	//fetch books
+	//fetch
 	function get_beritas($limit, $start, $st = NULL)
 	{
 		if ($st == "NIL") $st = "";
@@ -119,5 +126,32 @@ class Menu_model extends CI_Model
 		ON `berita`.`id_role` = `user_role`.`id` WHERE `berita`.`id` = '$id'
 		";
 		return $this->db->query($query)->row_array();
+	}
+
+	//fetch books
+	function get_keluhans($limit, $start, $st = NULL)
+	{
+		if ($st == "NIL") $st = "";
+		$sql = "SELECT `keluhan`.*, `pelanggan`.`nama`,`user`.`name`
+				FROM `keluhan` JOIN `pelanggan`
+				ON `keluhan`.`id_p` = `pelanggan`.`cid`
+				JOIN `user`
+				ON `keluhan`.`id_petugas` = `user`.`id`
+				WHERE `pelanggan`.`nama` LIKE '%$st%' ORDER BY `keluhan`.`id_keluhan` DESC LIMIT " . $start . ", " . $limit;
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+
+	function get_keluhans_count($st = NULL)
+	{
+		if ($st == "NIL") $st = "";
+		$sql = "SELECT `keluhan`.*, `pelanggan`.`nama`
+				FROM `keluhan` JOIN `pelanggan`
+				ON `keluhan`.`id_p` = `pelanggan`.`cid`
+				JOIN `user`
+				ON `keluhan`.`id_petugas` = `user`.`id`
+				WHERE judul LIKE '%$st%'";
+		$query = $this->db->query($sql);
+		return $query->num_rows();
 	}
 }

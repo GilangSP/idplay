@@ -859,6 +859,9 @@
 						$("#floatingCID").val("");
 						$("#floatingjp").val(null);
 						$("#image_1").val(null);
+						previewDefaultText_1.style.display = null;
+						previewImage_1.style.display = null;
+						previewImage_1.setAttribute("src", "");
 					}
 				});
 			}

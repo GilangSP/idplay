@@ -23,8 +23,8 @@
 						<div class="icon d-flex justify-content-center align-items-center">
 							<span class="flaticon-guest"></span>
 						</div>
-						<strong class="number" data-number="30">0</strong>
-						<span>Keluhan Pelanggan</span>
+						<strong class="number" data-number="<?= $this->db->get('pelanggan')->num_rows(); ?>">0</strong>
+						<span>Total Pelanggan</span>
 					</div>
 				</div>
 			</div>
@@ -37,7 +37,8 @@
 									alt="">
 							</span>
 						</div>
-						<strong class="number" data-number="200">0</strong>
+						<strong class="number"
+							data-number="<?= $this->db->get_where('keluhan', ['validasi' => 2])->num_rows(); ?>">0</strong>
 						<span>Keluhan yang sudah diproses</span>
 					</div>
 				</div>
@@ -51,8 +52,8 @@
 									width="50" alt="">
 							</span>
 						</div>
-						<strong class="number" data-number="2500">0</strong>
-						<span>Total Keluhan</span>
+						<strong class="number" data-number="<?= $this->db->get('keluhan')->num_rows(); ?>">0</strong>
+						<span>Total Keluhan Pelanggan</span>
 					</div>
 				</div>
 			</div>
@@ -62,7 +63,7 @@
 						<div class="icon d-flex justify-content-center align-items-center">
 							<span class="flaticon-idea"></span>
 						</div>
-						<strong class="number" data-number="40">0</strong>
+						<strong class="number" data-number="<?= $this->db->get('berita')->num_rows(); ?>">0</strong>
 						<span>Topik</span>
 					</div>
 				</div>
