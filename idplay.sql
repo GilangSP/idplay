@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 20 Des 2022 pada 04.38
+-- Waktu pembuatan: 21 Des 2022 pada 05.14
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 8.0.19
 
@@ -64,10 +64,18 @@ INSERT INTO `berita` (`id`, `judul`, `subject`, `isi`, `image`, `tanggal`, `id_r
 CREATE TABLE `keluhan` (
   `id_keluhan` int(11) NOT NULL,
   `id_p` char(100) NOT NULL,
+  `id_petugas` int(11) NOT NULL,
   `keluhan` varchar(250) NOT NULL,
   `gambar` text NOT NULL,
   `validasi` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `keluhan`
+--
+
+INSERT INTO `keluhan` (`id_keluhan`, `id_p`, `id_petugas`, `keluhan`, `gambar`, `validasi`) VALUES
+(1, '110022993', 17, 'taki', 'Screenshot_2022-04-13_232513.png', 1);
 
 -- --------------------------------------------------------
 
@@ -330,7 +338,7 @@ ALTER TABLE `berita`
 -- AUTO_INCREMENT untuk tabel `keluhan`
 --
 ALTER TABLE `keluhan`
-  MODIFY `id_keluhan` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_keluhan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
